@@ -5,6 +5,6 @@ My dotfiles.
 ## Manual
 
   gem install homesick
-  homesick clone mroth/dotfiles
+  homesick clone https://github.com/mroth/dotfiles.git
   homesick symlink mroth/dotfiles
 
