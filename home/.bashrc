@@ -1,30 +1,24 @@
 # bashrc is executed for all interactive bash shells
+# I use zsh so this is just for in case I need to go in there for some reason make sure important stuff works
 
 #
 # Run our main shell configuration
 #
-source ~/.dothome/shell/run
-
-#
-# Run stuff to configure nice git prompt in shell (bash specific)
-#
-source ~/.dothome/shell/bash/gitprompt.sh
+function source_if_exists {
+    file=${1}
+    
+    if [ -f ${file} ]; then
+        source ${file}
+    fi
+}
+source_if_exists ~/.shell_aliases.sh
+source_if_exists ~/.shell_environment.sh
+source_if_exists ~/.shell_functions.sh
 
 #
 # source git completion from homebrew git install (always brew install git!)
 #
 source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
-
-#
-# use hub to wrap git
-#
-#eval "$(hub alias -s)" #FIXME: when bash is run manually, hub alias does zsh commands!
-#source_if_exists /usr/local/etc/bash_completion.d/hub.bash_completion.sh
-
-#
-# enable color LS output (bash specific need?)
-#
-export CLICOLOR=1
 
 #
 # Let these live here instead of main configuration, 
