@@ -1,0 +1,1 @@
+alias lsd='ls -od \.*'

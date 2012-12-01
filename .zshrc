@@ -34,6 +34,16 @@ source $ZSH/oh-my-zsh.sh
 # Run our main shell configuration
 #
 #source ~/.dothome/shell/run
+function source_if_exists {
+    file=${1}
+    
+    if [ -f ${file} ]; then
+        source ${file}
+    fi
+}
+source_if_exists ~/.shell_alises.sh
+source_if_exists ~/.shell_environment.sh
+source_if_exists ~/.shell_functions.sh
 
 #
 # rvm insists on .zlogin for this, but that doesnt get called when executing zsh manually from bash
@@ -51,4 +61,3 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # for iterm2 "reuse previous tab's directory" feature, make sure rvmrc is run when new tab opens
 #
 __rvm_project_rvmrc
-
