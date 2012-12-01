@@ -33,7 +33,7 @@ source $ZSH/oh-my-zsh.sh
 #
 # Run our main shell configuration
 #
-source ~/.dothome/shell/run
+#source ~/.dothome/shell/run
 
 #
 # rvm insists on .zlogin for this, but that doesnt get called when executing zsh manually from bash
