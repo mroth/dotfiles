@@ -46,6 +46,11 @@ source_if_exists ~/.shell_environment.sh
 source_if_exists ~/.shell_functions.sh
 
 #
+# load scm_breeze
+#
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+
+#
 # rvm insists on .zlogin for this, but that doesnt get called when executing zsh manually from bash
 # TODO: is there a way to do this that makes more sense? (this seems redundant)
 #
