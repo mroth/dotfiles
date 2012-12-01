@@ -41,7 +41,7 @@ function source_if_exists {
         source ${file}
     fi
 }
-source_if_exists ~/.shell_alises.sh
+source_if_exists ~/.shell_aliases.sh
 source_if_exists ~/.shell_environment.sh
 source_if_exists ~/.shell_functions.sh
 
