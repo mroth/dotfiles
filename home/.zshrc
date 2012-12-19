@@ -66,3 +66,10 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # for iterm2 "reuse previous tab's directory" feature, make sure rvmrc is run when new tab opens
 #
 __rvm_project_rvmrc
+
+#
+# add npm global binaries to path.
+# for some reason homebrew doesn't like to do this automatically
+# REMINDER: periodically check if homebrew has decided to handle this and remove from here if so
+#
+PATH=$PATH:/usr/local/share/npm/bin
