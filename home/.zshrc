@@ -33,7 +33,6 @@ source $ZSH/oh-my-zsh.sh
 #
 # Run our main shell configuration
 #
-#source ~/.dothome/shell/run
 function source_if_exists {
     file=${1}
     
@@ -54,7 +53,7 @@ source_if_exists ~/.shell_functions.sh
 # rvm insists on .zlogin for this, but that doesnt get called when executing zsh manually from bash
 # TODO: is there a way to do this that makes more sense? (this seems redundant)
 #
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 #
 # Let this rvm shit live here instead of main configuration, 
@@ -65,7 +64,9 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 #
 # for iterm2 "reuse previous tab's directory" feature, make sure rvmrc is run when new tab opens
 #
-__rvm_project_rvmrc
+if [ -s "$HOME/.rvm/scripts/rvm" ]; then
+  __rvm_project_rvmrc
+fi
 
 #
 # add npm global binaries to path.

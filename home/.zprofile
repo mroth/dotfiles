@@ -1,5 +1,2 @@
-#
-# Let this rvm shit live here instead of main configuration, 
-# cuz rvm installer is annoying and re-adds them!
-#
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+#we just have a stub here so we can have one profile for bash/zsh
+source $HOME/.profile
