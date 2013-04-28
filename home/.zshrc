@@ -31,46 +31,29 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 
 #
-# Run our main shell configuration
+# source my main interactive shell environment configurations
 #
-function source_if_exists {
-    file=${1}
-    
-    if [ -f ${file} ]; then
-        source ${file}
-    fi
-}
-source_if_exists ~/.shell_aliases.sh
-source_if_exists ~/.shell_environment.sh
-source_if_exists ~/.shell_functions.sh
+[ -s "$HOME/.shell_aliases.sh" ]          && source "$HOME/.shell_aliases.sh"
+[ -s "$HOME/.shell_environment.sh" ]      && source "$HOME/.shell_environment.sh"
+[ -s "$HOME/.shell_functions.sh" ]        && source "$HOME/.shell_functions.sh"
 
 #
-# load scm_breeze
+# load scm_breeze to make git less painful
 #
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ]  && source "$HOME/.scm_breeze/scm_breeze.sh"
 
-#
-# rvm insists on .zlogin for this, but that doesnt get called when executing zsh manually from bash
-# TODO: is there a way to do this that makes more sense? (this seems redundant)
-#
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-#
-# Let this rvm shit live here instead of main configuration, 
-# cuz rvm installer is annoying and re-adds them!
-#
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-#
 # for iterm2 "reuse previous tab's directory" feature, make sure rvmrc is run when new tab opens
+# NOTE: disabled for now since no longer using RVM, but keeping around in case I go back to it.
 #
-if [ -s "$HOME/.rvm/scripts/rvm" ]; then
-  __rvm_project_rvmrc
-fi
+# if [ -s "$HOME/.rvm/scripts/rvm" ]; then
+#   __rvm_project_rvmrc
+# fi
 
 #
 # add npm global binaries to path.
 # for some reason homebrew doesn't like to do this automatically
 # REMINDER: periodically check if homebrew has decided to handle this and remove from here if so
+# WE DONT NEED THIS RIGHT NOW SINCE NOT USING BREW VERSION OF NPM ANYMORE
 #
-PATH=$PATH:/usr/local/share/npm/bin
+# PATH=$PATH:/usr/local/share/npm/bin
