@@ -24,9 +24,3 @@ source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
 # load scm_breeze
 #
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
-
-#
-# Let these live here instead of main configuration, 
-# cuz rvm installer is annoying and re-adds them!
-#
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
