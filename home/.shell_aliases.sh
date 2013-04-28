@@ -7,3 +7,4 @@ alias cdf='cd `osascript -e "tell application \"Finder\" to if window 1 exists t
 
 #homeshick as a pseudo command
 alias homeshick=$HOME/.homeshick
+alias homesick=homeshick
