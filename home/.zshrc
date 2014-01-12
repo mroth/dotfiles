@@ -60,6 +60,11 @@ plugins=(bundler brew coffee gem heroku npm osx zsh-syntax-highlighting)
 #
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ]  && source "$HOME/.scm_breeze/scm_breeze.sh"
 
+#
+# load homeshick using new method
+#
+[ -s "$HOME/.homesick/repos/homeshick/homeshick.sh" ]  && source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+
 
 # for iterm2 "reuse previous tab's directory" feature, make sure rvmrc is run when new tab opens
 # NOTE: disabled for now since no longer using RVM, but keeping around in case I go back to it.

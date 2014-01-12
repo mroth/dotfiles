@@ -6,5 +6,4 @@ alias lsd='ls -od \.*'
 alias cdf='cd `osascript -e "tell application \"Finder\" to if window 1 exists then if target of window 1 as string is not \":\" then get POSIX path of (target of window 1 as alias)"`'
 
 #homeshick as a pseudo command
-alias homeshick=$HOME/.homeshick
 alias homesick=homeshick
