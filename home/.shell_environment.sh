@@ -6,6 +6,12 @@ export HOMEBREW_EDITOR='subl -n'
 export CLICOLOR=1
 
 #
+# add local bin to default path
+# (in theory this should be in default path on Mavericks, not sure why not on mbair?)
+#
+export PATH=/usr/local/bin:$PATH
+
+#
 # add local repo binstubs to default path
 #
 export PATH=.bundle/binstubs:$PATH
