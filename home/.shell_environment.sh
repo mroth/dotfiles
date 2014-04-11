@@ -23,3 +23,8 @@ export PATH=.bundle/binstubs:$PATH
 #
 export ST2CONFIG="$HOME/Library/Application Support/Sublime Text 2/Packages/User"
 export DOTFILES="$HOME/.homesick/repos/dotfiles/home"
+
+#
+# set ARCHFLAGS until ruby/xcode 5.1.1 bug is figured out
+#
+export ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future
