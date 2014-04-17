@@ -8,6 +8,11 @@ export CLICOLOR=1
 export GOPATH=$HOME/Dropbox/src/gocode
 
 #
+# lolcommits related prefs
+#
+export LOLCOMMITS_DELAY=1
+
+#
 # add local bin to default path
 # (in theory this should be in default path on Mavericks, not sure why not on mbair?)
 #
