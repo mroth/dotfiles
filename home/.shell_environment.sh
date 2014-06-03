@@ -5,7 +5,16 @@ export GIT_EDITOR='vim'
 export HOMEBREW_EDITOR='subl -n'
 export CLICOLOR=1
 
+#
+# some things about Go are really annoying
+#
 export GOPATH=$HOME/Dropbox/src/gocode
+
+#
+# Manually set Atom editor path
+# (atom-cli sometimes complains without this when combined with homebrew-cask)
+#
+export ATOM_PATH=/opt/homebrew-cask/Caskroom/atom/latest/
 
 #
 # lolcommits related prefs
