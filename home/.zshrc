@@ -43,7 +43,7 @@ DISABLE_AUTO_TITLE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(bundler brew coffee gem heroku npm osx zsh-syntax-highlighting)
+plugins=(bundler brew coffee heroku npm osx zsh-syntax-highlighting)
 
 # here and below is no longer template land
 [ -s "$ZSH/oh-my-zsh.sh" ]                && source "$ZSH/oh-my-zsh.sh"
