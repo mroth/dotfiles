@@ -22,12 +22,6 @@ export ATOM_PATH=/opt/homebrew-cask/Caskroom/atom/latest/
 export LOLCOMMITS_DELAY=1
 
 #
-# add local bin to default path
-# (in theory this should be in default path on Mavericks, not sure why not on mbair?)
-#
-export PATH=/usr/local/bin:$PATH
-
-#
 # add local repo binstubs to default path
 #
 export PATH=.bundle/binstubs:$PATH
