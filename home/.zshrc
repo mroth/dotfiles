@@ -65,6 +65,11 @@ plugins=(bundler brew coffee heroku npm osx zsh-syntax-highlighting)
 #
 [ -s "$HOME/.homesick/repos/homeshick/homeshick.sh" ]  && source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
+#
+# alias hub to git when installed (now using gh instead)
+#
+if which gh > /dev/null; then eval "$(gh alias -s)"; fi
+
 
 #
 # add npm global binaries to path.
