@@ -6,7 +6,7 @@
 #
 function source_if_exists {
     file=${1}
-    
+
     if [ -f ${file} ]; then
         source ${file}
     fi
@@ -19,8 +19,3 @@ source_if_exists ~/.shell_functions.sh
 # source git completion from homebrew git install (always brew install git!)
 #
 source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
-
-#
-# load scm_breeze
-#
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
