@@ -30,8 +30,3 @@ export PATH=.bundle/binstubs:$PATH
 # set some convenience variables for things I can never remember where they are
 #
 export DOTFILES="$HOME/.homesick/repos/dotfiles/home"
-
-#
-# set ARCHFLAGS until ruby/xcode 5.1.1 bug is figured out
-#
-export ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future
