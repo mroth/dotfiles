@@ -2,7 +2,7 @@
 # global environment settings/variables
 #
 export GIT_EDITOR='vim'
-export HOMEBREW_EDITOR='subl -n'
+export HOMEBREW_EDITOR='atom -n'
 export CLICOLOR=1
 
 #
