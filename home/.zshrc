@@ -83,7 +83,7 @@ plugins=(bundler brew coffee heroku npm osx zsh-syntax-highlighting)
 #
 # alias hub to git when installed (now using gh instead)
 #
-if which gh > /dev/null; then eval "$(gh alias -s)"; fi
+if type gh > /dev/null; then eval "$(gh alias -s)"; fi
 
 
 #
