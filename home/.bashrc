@@ -1,5 +1,9 @@
 # bashrc is executed for all interactive bash shells
-# I use zsh so this is just for in case I need to go in there for some reason make sure important stuff works
+#
+# I use zsh so this is just for in case I need to go in there for some reason
+# make sure some important stuff works?
+#
+# Maybe it's just more of a reminder in case I ever go back to bash (hah!).
 
 #
 # Run our main shell configuration
