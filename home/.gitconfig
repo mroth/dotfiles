@@ -1,0 +1,27 @@
+[user]
+name = Matthew Rothenberg
+email = mrothenberg@gmail.com
+
+[github]
+user = mroth
+
+[color]
+ui = true
+
+[diff]
+tool = opendiff
+
+[merge]
+tool = opendiff
+
+[push]
+default = simple
+
+[core]
+quotepath = false
+
+[credential]
+helper = osxkeychain
+
+[alias]
+amend = commit --amend -C HEAD
