@@ -85,6 +85,19 @@ plugins=(bundler brew brew-cask coffee heroku osx zsh-syntax-highlighting)
 #
 if type gh > /dev/null; then eval "$(gh alias -s)"; fi
 
+#
+# load rbenv in smart way
+# (in boxen managed land, this should fail because /opt/boxen/* shit wont
+#  be in the path yet)
+#
+if type rbenv > /dev/null; then eval "$(rbenv init --norehash - zsh)"; fi
+
+#
+# Otherwise if boxen exists, source it.
+# TODO: remove me soonish.
+#
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+
 
 #
 # add npm global binaries to path.

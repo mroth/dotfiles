@@ -6,4 +6,4 @@
 #
 # Otherwise if boxen exists, source it (uses RBENV, INCOMPATIBLE WITH RVM!)
 #
-[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+# [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
