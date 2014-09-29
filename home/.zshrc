@@ -97,12 +97,3 @@ if type rbenv > /dev/null; then eval "$(rbenv init --norehash - zsh)"; fi
 # TODO: remove me soonish.
 #
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
-
-
-#
-# add npm global binaries to path.
-# for some reason homebrew doesn't like to do this automatically
-# REMINDER: periodically check if homebrew has decided to handle this and remove from here if so
-# WE DONT NEED THIS RIGHT NOW SINCE NOT USING BREW VERSION OF NPM ANYMORE
-#
-# PATH=$PATH:/usr/local/share/npm/bin
