@@ -11,6 +11,9 @@ alias td='ack TODO'
 alias brewsup='brew update && brew outdated'
 alias brewup='brew upgrade && brew cleanup'
 
+# since you have to type it so much
+alias be='bundle exec'
+
 # "clean" GHC shoving intermediate files into /tmp
 # for when I'm working on quick scripts and dont really care about them
 # also enable -O2 optimization by default
