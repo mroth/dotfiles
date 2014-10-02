@@ -64,11 +64,14 @@ plugins=(bundler brew brew-cask coffee heroku osx zsh-syntax-highlighting)
 [ -s "$ZSH/oh-my-zsh.sh" ]                && source "$ZSH/oh-my-zsh.sh"
 
 #
-# source my main interactive shell environment configurations
+# alias hub to git when installed (now using gh instead)
 #
-[ -s "$HOME/.shell_aliases.sh" ]          && source "$HOME/.shell_aliases.sh"
-[ -s "$HOME/.shell_environment.sh" ]      && source "$HOME/.shell_environment.sh"
-[ -s "$HOME/.shell_functions.sh" ]        && source "$HOME/.shell_functions.sh"
+if type gh > /dev/null; then eval "$(gh alias -s)"; fi
+
+#
+# load rbenv in smart way
+#
+if type rbenv > /dev/null; then eval "$(rbenv init --norehash - zsh)"; fi
 
 #
 # load scm_breeze to make git less painful
@@ -81,11 +84,8 @@ plugins=(bundler brew brew-cask coffee heroku osx zsh-syntax-highlighting)
 [ -s "$HOME/.homesick/repos/homeshick/homeshick.sh" ]  && source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 #
-# alias hub to git when installed (now using gh instead)
+# source my main interactive shell environment configurations
 #
-if type gh > /dev/null; then eval "$(gh alias -s)"; fi
-
-#
-# load rbenv in smart way
-#
-if type rbenv > /dev/null; then eval "$(rbenv init --norehash - zsh)"; fi
+[ -s "$HOME/.shell_aliases.sh" ]          && source "$HOME/.shell_aliases.sh"
+[ -s "$HOME/.shell_environment.sh" ]      && source "$HOME/.shell_environment.sh"
+[ -s "$HOME/.shell_functions.sh" ]        && source "$HOME/.shell_functions.sh"
