@@ -8,7 +8,9 @@ export CLICOLOR=1
 #
 # some things about Go are really annoying
 #
-export GOPATH=$HOME/Dropbox/src/gocode
+export GOPATH=$HOME/src/go
+export PATH=$GOPATH/bin:$PATH
+export GOCODE=$GOPATH/src/github.com/mroth
 
 #
 # Manually set Atom editor path
