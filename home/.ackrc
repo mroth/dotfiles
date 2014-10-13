@@ -1,0 +1,13 @@
+# configuration for ack
+# http://beyondgrep.com/documentation/
+
+#
+# Ignore common relative paths for vendored files.
+#
+# rubygems
+--ignore-dir=.bundle
+# npm
+--ignore-dir=node_modules
+# godep
+--ignore-dir=_workspace
+
