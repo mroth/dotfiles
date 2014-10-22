@@ -26,6 +26,9 @@
 [alias]
 	amend = commit --amend -C HEAD
 
+[gh]
+	protocol = https
+
 # GitHub for Mac insists on adding these whenever it launches, so let's check it
 # in a way that we at least knows where it comes from.
 [filter "media"]
