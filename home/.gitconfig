@@ -31,7 +31,7 @@
 
 # GitHub for Mac insists on adding these whenever it launches, so let's check it
 # in a way that we at least knows where it comes from.
-[filter "media"]
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
 	required = true
-	clean = git media clean %f
-	smudge = git media smudge %f
