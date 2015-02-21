@@ -23,9 +23,9 @@ plugins=(brew brew-cask coffee heroku osx zsh-syntax-highlighting)
 [ -s "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"
 
 #
-# alias gh to git when installed (`gh` is the new `hub`)
+# alias hub to git when installed
 #
-if type gh > /dev/null; then eval "$(gh alias -s)"; fi
+if type hub > /dev/null; then eval "$(hub alias -s)"; fi
 
 #
 # load rbenv in fairly smart way

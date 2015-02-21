@@ -26,7 +26,7 @@
 [alias]
 	amend = commit --amend -C HEAD
 
-[gh]
+[hub]
 	protocol = https
 
 # GitHub for Mac insists on adding these whenever it launches, so let's check it
