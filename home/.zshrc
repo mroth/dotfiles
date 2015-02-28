@@ -15,7 +15,7 @@ COMPLETION_WAITING_DOTS="true"  # red dots whilst waiting for completion.
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew brew-cask coffee heroku osx zsh-syntax-highlighting)
+plugins=(brew brew-cask coffee golang heroku osx zsh-syntax-highlighting)
 
 #
 # source oh-my-zsh (in a safe way, unlike their template!)
