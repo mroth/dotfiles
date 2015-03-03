@@ -25,6 +25,8 @@
 
 [alias]
 	amend = commit --amend -C HEAD
+	squash = rebase -i --autosquash
+	log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 [hub]
 	protocol = https
