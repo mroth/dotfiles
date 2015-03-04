@@ -4,8 +4,8 @@ Not too much here, trying to keep configuration management in other places.
 
 ## Setup
 ### Automatic
-Usually managed by the `dotfiles:install` task v3 of
-[mroth/bootstrapper](http://github.com/mroth/bootstrapper), so don't worry man.
+Usually managed by
+[mroth/bootslap](http://github.com/mroth/bootslap), so don't worry about it man.
 
 ### Manual
 
