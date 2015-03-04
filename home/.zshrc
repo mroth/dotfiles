@@ -25,29 +25,36 @@ plugins=(brew brew-cask coffee golang heroku osx zsh-syntax-highlighting)
 #
 # alias hub to git when installed
 #
-if type hub > /dev/null; then eval "$(hub alias -s)"; fi
+if type hub > /dev/null; then
+  eval "$(hub alias -s)"
+fi
 
 #
 # load rbenv in fairly smart way
 #
-if type rbenv > /dev/null; then eval "$(rbenv init --norehash - zsh)"; fi
+if type rbenv > /dev/null; then
+  eval "$(rbenv init --norehash - zsh)"
+fi
 
 #
 # load scm_breeze to make git less painful
+# DEPRECATED for now, dogfooding scmpuff instead.
 #
-# [ -s "$HOME/.scm_breeze/scm_breeze.sh" ]  && source "$HOME/.scm_breeze/scm_breeze.sh"
+#SCMBREEZE="$HOME/.scm_breeze/scm_breeze.sh"
+#[ -s $SCMBREEZE ]  && source $SCMBREEZE
 
 #
 # load homeshick for dotfile management
 #
-[ -s "$HOME/.homesick/repos/homeshick/homeshick.sh" ]  && source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+HOMESHICK="$HOME/.homesick/repos/homeshick/homeshick.sh"
+[ -s $HOMESHICK ]  && source $HOMESHICK
 
 #
 # source my main interactive shell environment configurations
 #
-[ -s "$HOME/.shell_aliases.sh" ]          && source "$HOME/.shell_aliases.sh"
-[ -s "$HOME/.shell_environment.sh" ]      && source "$HOME/.shell_environment.sh"
-[ -s "$HOME/.shell_functions.sh" ]        && source "$HOME/.shell_functions.sh"
+[ -s "$HOME/.shell_aliases.sh" ]     && source "$HOME/.shell_aliases.sh"
+[ -s "$HOME/.shell_environment.sh" ] && source "$HOME/.shell_environment.sh"
+[ -s "$HOME/.shell_functions.sh" ]   && source "$HOME/.shell_functions.sh"
 
 #
 # let's dogfood scmpuff instead of scm_breeze for now!
@@ -55,4 +62,6 @@ if type rbenv > /dev/null; then eval "$(rbenv init --norehash - zsh)"; fi
 # binary path shit is on PATH.. won't be needed once its a real pkg
 # and in default path somewhere.
 #
-if type scmpuff > /dev/null; then eval "$(scmpuff init -s)"; fi
+if type scmpuff > /dev/null; then
+  eval "$(scmpuff init -s)"
+fi
