@@ -35,7 +35,7 @@ if type rbenv > /dev/null; then eval "$(rbenv init --norehash - zsh)"; fi
 #
 # load scm_breeze to make git less painful
 #
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ]  && source "$HOME/.scm_breeze/scm_breeze.sh"
+# [ -s "$HOME/.scm_breeze/scm_breeze.sh" ]  && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 #
 # load homeshick for dotfile management
@@ -48,3 +48,11 @@ if type rbenv > /dev/null; then eval "$(rbenv init --norehash - zsh)"; fi
 [ -s "$HOME/.shell_aliases.sh" ]          && source "$HOME/.shell_aliases.sh"
 [ -s "$HOME/.shell_environment.sh" ]      && source "$HOME/.shell_environment.sh"
 [ -s "$HOME/.shell_functions.sh" ]        && source "$HOME/.shell_functions.sh"
+
+#
+# let's dogfood scmpuff instead of scm_breeze for now!
+# this needs to be loaded after ./shell_environment so that the stupid Go
+# binary path shit is on PATH.. won't be needed once its a real pkg
+# and in default path somewhere.
+#
+if type scmpuff > /dev/null; then eval "$(scmpuff init -s)"; fi
