@@ -22,5 +22,5 @@ khanify () {
   # Add frankenserver bins to PATH
   export PATH="$HOME/src/khan/webapp/third_party/frankenserver:$PATH"
   # Add dotfiles scripts to PATH
-  export PATH="$HOME/src/khan/devtools/khan-dotfiles/bin:$PATH"
+  export PATH="$HOME/src/khan/khan-dotfiles/bin:$PATH"
 }
