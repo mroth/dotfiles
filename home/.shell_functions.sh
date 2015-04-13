@@ -11,6 +11,10 @@ khanify () {
   # source virtualenv
   source ~/.virtualenv/khan27/bin/activate
 
+  # override standard Git user info
+  export GIT_AUTHOR_EMAIL=mroth@khanacademy.org
+  export GIT_COMMITTER_EMAIL=mroth@khanacademy.org
+
   # Add Phabricator bins to PATH
   export PATH="$HOME/src/khan/devtools/arcanist/khan-bin:$PATH"
   # Add git-bigfiles to PATH
