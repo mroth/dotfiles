@@ -12,11 +12,11 @@ khanify () {
   source ~/.virtualenv/khan27/bin/activate
 
   # Add Phabricator bins to PATH
-  export PATH="$HOME/khan/devtools/arcanist/khan-bin:$PATH"
+  export PATH="$HOME/src/khan/devtools/arcanist/khan-bin:$PATH"
   # Add git-bigfiles to PATH
-  export PATH="$HOME/khan/devtools/git-bigfile/bin:$PATH"
+  export PATH="$HOME/src/khan/devtools/git-bigfile/bin:$PATH"
   # Add frankenserver bins to PATH
-  export PATH="$HOME/khan/webapp/third_party/frankenserver:$PATH"
+  export PATH="$HOME/src/khan/webapp/third_party/frankenserver:$PATH"
   # Add dotfiles scripts to PATH
-  export PATH="$HOME/khan/devtools/khan-dotfiles/bin:$PATH"
+  export PATH="$HOME/src/khan/devtools/khan-dotfiles/bin:$PATH"
 }
