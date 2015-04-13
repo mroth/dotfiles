@@ -8,6 +8,10 @@
 [core]
 	excludesfile = ~/.gitignore
 
+#include khan specific configs as well
+[include]
+	path = .gitconfig.khan
+
 [color]
 	ui = true
 
@@ -30,34 +34,10 @@
 [credential]
 	helper = osxkeychain
 
-[branch]
-	# autosetupmerge auto-adds the --track flag to each git branch,
-	# which is helpful for arc (part of Phabricator).  autosetuprebase
-	# means that instead of merging it will rebase.  Weird you need both!
-	autosetupmerge = always
-	autosetuprebase = always
-
-
 [alias]
 	amend = commit --amend -C HEAD
 	squash = rebase -i --autosquash
 	log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
-	# Versions of commands that handle submodules the Khan way.
-	# TODO(dmnd): Move to ./bin
-	co = "!f() { git checkout \"$@\" && git submodule update --init --recursive; }; f"
-	p = "!f() { git pull \"$@\" && git submodule update --init --recursive; }; f"
-	m = "!f() { git merge \"$@\" && git submodule update --init --recursive; }; f"
-	gsu = "!f() { git submodule sync --recursive && git submodule update --init --recursive; }; f"
-
-	# Other useful KA commands.
-	outgoing = "!git fetch >/dev/null 2>&1; git log @{upstream}..HEAD"
-	incoming = "!git fetch >/dev/null 2>&1; git log HEAD..@{upstream}"
-	update-submodule = !bash -c 'git pull --no-rebase && pushd $1 && git co master && git pull && popd && git commit ${1%/} -m Substate\\ for\\ ${1%/} -m Test\\ plan: -m None && git push' --
-	# For after a commit fails with lint, and it says 'commit message saved...'
-	recommit = "!git commit -F \"`git rev-parse --git-dir`\"/commit.save"
-	weekly = "!git log --author=$USER --since=`date -d last\\ monday +%Y/%m/%d`"
-	findreviewers = "!~/khan/webapp/tools/findreviewers.py"
 
 [hub]
 	protocol = https
