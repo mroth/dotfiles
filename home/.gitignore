@@ -4,3 +4,4 @@
 .Trashes
 /.bundle/
 xcuserdata
+*.pyc
