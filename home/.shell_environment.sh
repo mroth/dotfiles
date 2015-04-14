@@ -1,6 +1,7 @@
 #
 # global environment settings/variables
 #
+export EDITOR='vim'
 export GIT_EDITOR='vim'
 export HOMEBREW_EDITOR='atom -n'
 export CLICOLOR=1
