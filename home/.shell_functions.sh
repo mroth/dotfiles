@@ -22,5 +22,6 @@ khanify () {
   export PATH="$KA_DEVROOT/arcanist/khan-bin:$PATH"
   export PATH="$KA_DEVROOT/git-bigfile/bin:$PATH"
   export PATH="$KA_DEVROOT/git-workflow/bin:$PATH"
+  export PATH="$KA_DEVROOT/ka-clone/bin:$PATH"
   export PATH="$KA_DEVROOT/khan-linter/bin:$PATH"
 }
