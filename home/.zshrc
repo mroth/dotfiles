@@ -47,7 +47,7 @@ fi
 # load homeshick for dotfile management
 #
 HOMESHICK="$HOME/.homesick/repos/homeshick/homeshick.sh"
-[ -s $HOMESHICK ]  && source $HOMESHICK
+[ -s "$HOMESHICK" ]  && source "$HOMESHICK"
 
 #
 # source my main interactive shell environment configurations
