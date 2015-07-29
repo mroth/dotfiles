@@ -42,7 +42,10 @@ else
 fi
 export BUNDLE_JOBS=$target_jobs
 
-
+#
+# Python, you make a big mess with your *.pyc bullshit.
+#
+export PYTHONDONTWRITEBYTECODE=1
 
 #
 # set some convenience variables for things I can never remember where they are
