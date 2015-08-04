@@ -8,9 +8,12 @@ export CLICOLOR=1
 
 #
 # some things about Go are really annoying
+# set required GOPATH, add `go install` bin directory to default path (but make
+# it last so /usr/local et al take precedence), and set a convenience env var
+# to make it less annoying to navigate to my Go code src.
 #
 export GOPATH=$HOME/src/go
-export PATH=$GOPATH/bin:$PATH
+export PATH=$PATH:$GOPATH/bin
 export GOCODE=$GOPATH/src/github.com/mroth
 
 #
