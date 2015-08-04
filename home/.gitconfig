@@ -8,10 +8,6 @@
 [core]
 	excludesfile = ~/.gitignore
 
-#include khan specific configs as well
-[include]
-	path = .gitconfig.khan
-
 [color]
 	ui = true
 
