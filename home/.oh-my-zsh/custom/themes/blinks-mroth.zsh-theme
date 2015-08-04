@@ -31,3 +31,27 @@ PROMPT='%{%f%k%b%}
 %{%K{${bkg}}%}$(_prompt_char)%{%K{${bkg}}%} %#%{%f%k%b%} '
 
 #RPROMPT='!%{%B%F{cyan}%}%!%{%f%k%b%}'
+
+# if in a git repository, set an emoji to indicate the active user.email, to
+# make sure I don't accidentally commit from the wrong email for a repository
+function _git_email_prompt_info() {
+  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    email="${GIT_AUTHOR_EMAIL:-$(command git config --get user.email 2>/dev/null)}"
+    case "$email" in
+    "mrothenberg@gmail.com")
+      echo "🚀 "
+      ;;
+    "mroth@khanacademy.org")
+      echo "🌱 "
+      ;;
+    "mroth@polaroid.io")
+      echo "🌈 "
+      ;;
+    *)
+      echo "❔ "
+      ;;
+    esac
+  fi
+}
+
+RPROMPT='$(_git_email_prompt_info)'
