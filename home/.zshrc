@@ -37,11 +37,11 @@ if type rbenv > /dev/null; then
 fi
 
 #
-# load scm_breeze to make git less painful
-# DEPRECATED for now, dogfooding scmpuff instead.
+# scmpuff to enhance git further
 #
-#SCMBREEZE="$HOME/.scm_breeze/scm_breeze.sh"
-#[ -s $SCMBREEZE ]  && source $SCMBREEZE
+if type scmpuff > /dev/null; then
+  eval "$(scmpuff init -s)"
+fi
 
 #
 # load homeshick for dotfile management
@@ -55,13 +55,3 @@ HOMESHICK="$HOME/.homesick/repos/homeshick/homeshick.sh"
 [ -s "$HOME/.shell_aliases.sh" ]     && source "$HOME/.shell_aliases.sh"
 [ -s "$HOME/.shell_environment.sh" ] && source "$HOME/.shell_environment.sh"
 [ -s "$HOME/.shell_functions.sh" ]   && source "$HOME/.shell_functions.sh"
-
-#
-# let's dogfood scmpuff instead of scm_breeze for now!
-# this needs to be loaded after ./shell_environment so that the stupid Go
-# binary path shit is on PATH.. won't be needed once its a real pkg
-# and in default path somewhere.
-#
-if type scmpuff > /dev/null; then
-  eval "$(scmpuff init -s)"
-fi
