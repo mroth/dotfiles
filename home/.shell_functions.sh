@@ -22,4 +22,12 @@ khanify () {
   # export PATH="$KA_DEVROOT/git-workflow/bin:$PATH"
   # export PATH="$KA_DEVROOT/ka-clone/bin:$PATH"
   # export PATH="$KA_DEVROOT/khan-linter/bin:$PATH"
+
+  # setup gcloud tools, these are only available via binary, so get them
+  # via `brew cask install google-cloud-sdk`. most of the important ones are
+  # added to the path at install, but anything added afterwards (e.g. kubectl),
+  # is not.
+  GCLOUD="/opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+  [ -s "$GCLOUD/path.zsh.inc" ]       && source "$GCLOUD/path.zsh.inc"
+  [ -s "$GCLOUD/completion.zsh.inc" ] && source "$GCLOUD/completion.zsh.inc"
 }
