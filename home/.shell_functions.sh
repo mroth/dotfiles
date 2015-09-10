@@ -11,9 +11,6 @@ khanify () {
   # source virtualenv
   source ~/.virtualenv/khan27/bin/activate
 
-  # override standard Git user info
-  # export GIT_AUTHOR_EMAIL=mroth@khanacademy.org
-
   # Add frankenserver bins to PATH (I never refer to these directly..)
   # export PATH="$HOME/src/khan/webapp/third_party/frankenserver:$PATH"
 
