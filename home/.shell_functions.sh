@@ -30,4 +30,6 @@ khanify () {
   GCLOUD="/opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
   [ -s "$GCLOUD/path.zsh.inc" ]       && source "$GCLOUD/path.zsh.inc"
   [ -s "$GCLOUD/completion.zsh.inc" ] && source "$GCLOUD/completion.zsh.inc"
+  # below is so that local tests know where to find appengine libs
+  export PYTHONPATH="$GCLOUD/platform/google_appengine"
 }
