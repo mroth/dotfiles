@@ -3,7 +3,7 @@
 #
 export EDITOR='vim'
 export GIT_EDITOR='vim'
-export HOMEBREW_EDITOR='atom -n'
+export HOMEBREW_EDITOR='vim'
 export CLICOLOR=1
 
 #
