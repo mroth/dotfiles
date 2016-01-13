@@ -54,3 +54,5 @@ export PYTHONDONTWRITEBYTECODE=1
 # set some convenience variables for things I can never remember where they are
 #
 export DOTFILES="$HOME/.homesick/repos/dotfiles/home"
+export ICLOUD="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+
