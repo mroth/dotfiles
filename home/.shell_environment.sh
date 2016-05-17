@@ -17,12 +17,6 @@ export PATH=$PATH:$GOPATH/bin
 export GOCODE=$GOPATH/src/github.com/mroth
 
 #
-# Manually set Atom editor path
-# (atom-cli sometimes complains without this when combined with homebrew-cask)
-#
-export ATOM_PATH=/opt/homebrew-cask/Caskroom/atom/latest/
-
-#
 # lolcommits related prefs
 #
 export LOLCOMMITS_DELAY=1
