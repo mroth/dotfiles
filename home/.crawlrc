@@ -1,0 +1,16 @@
+# redirect the crawl_dir to something that will be synced via iCloud Storage.
+# crawl_dir  = /Users/mroth/Library/Mobile Documents/com~apple~CloudDocs/dcss
+
+# DUE TO A BUG(?), the above `crawl_dir` directive does not seem to be respected
+# on official macOS binaries, so instead use absolute pathes for saves/morgues.
+save_dir   = /Users/mroth/Library/Mobile Documents/com~apple~CloudDocs/dcss/saves
+morgue_dir = /Users/mroth/Library/Mobile Documents/com~apple~CloudDocs/dcss/morgue
+
+# For ease of fast syncing, all game options are then kept in the `init.txt` in
+# crawl_dir, instead of version control. ¯\_(ツ)_/¯
+#
+# BUT, since `crawl_dir` is not being respected, need to include this manually.
+include = /Users/mroth/Library/Mobile Documents/com~apple~CloudDocs/dcss/init.txt
+
+# Reference document if needed:
+# https://github.com/crawl/crawl/blob/master/crawl-ref/docs/options_guide.txt
