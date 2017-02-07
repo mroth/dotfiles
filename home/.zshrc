@@ -60,7 +60,7 @@ profile_stop "hub"
 #
 profile_start "rbenv"
 if type rbenv > /dev/null; then
-  eval "$(rbenv init --norehash - zsh)"
+  eval "$(rbenv init --no-rehash - zsh)"
 fi
 profile_stop "rbenv"
 
