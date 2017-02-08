@@ -1,6 +1,25 @@
 # User shell configuration
 # As a reminder .zshrc is for stuff that modifies the INTERACTIVE shell only.
 
+# Caches the output of a binary initialization command, to avoid the time to execute it in the future.
+# Usage: eval_cache <command> <generation args...>
+export ZSH_EVAL_CACHE_DIR="$HOME/.zsh-cache"
+function zsh_eval_cache () {
+  local cacheFile="$ZSH_EVAL_CACHE_DIR/init-$1.sh"
+  if [ -s $cacheFile ]; then
+    source $cacheFile
+  else
+    if type "$1" > /dev/null; then
+      (>&2 echo "$1 initialization not cached, caching output of: $*")
+      mkdir -p "$ZSH_EVAL_CACHE_DIR"
+      $* > "$cacheFile"
+      source "$cacheFile"
+    else
+      echo "zsh_eval_cache ERROR: $1 is not installed or in PATH"
+    fi
+  fi
+}
+
 # set up some very basic profiling of how long zshrc takes to load.
 # to test, use: ZSHRC_PROFILE=true zsh -ic "exit"
 declare -A ZSHRC_LOAD_START=()
@@ -50,27 +69,30 @@ profile_stop "oh-my-zsh"
 # alias hub to git when installed
 #
 profile_start "hub"
-if type hub > /dev/null; then
-  eval "$(hub alias -s)"
-fi
+zsh_eval_cache hub alias -s
+# if type hub > /dev/null; then
+#   eval "$(hub alias -s)"
+# fi
 profile_stop "hub"
 
 #
 # load rbenv in fairly smart way
 #
 profile_start "rbenv"
-if type rbenv > /dev/null; then
-  eval "$(rbenv init --no-rehash - zsh)"
-fi
+zsh_eval_cache rbenv init --no-rehash - zsh
+# if type rbenv > /dev/null; then
+#   eval "$(rbenv init --no-rehash - zsh)"
+# fi
 profile_stop "rbenv"
 
 #
 # scmpuff to enhance git further
 #
 profile_start "scmpuff"
-if type scmpuff > /dev/null; then
-  eval "$(scmpuff init -s)"
-fi
+zsh_eval_cache scmpuff init -s
+# if type scmpuff > /dev/null; then
+#   eval "$(scmpuff init -s)"
+# fi
 profile_stop "scmpuff"
 
 #
