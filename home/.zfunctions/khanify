@@ -1,23 +1,21 @@
-#
-# recursively touch, e.g. touch + mkdir -p
-# so files can easily be created at depth
-#
-canhaz () {
-  mkdir -p -- "${1%/*}" && touch -- "$1"
-}
+#!/bin/sh
 
-# make current shell setup for Khan Academy development
+# Load everything required for KA development that I haven't been able to claw
+# out of our global requirements just yet.  Hopefully this won't be needed for
+# much longer once we contain things there better, but for now, isolate loading
+# to be an option
 khanify () {
-  # source virtualenv
+  # source KA global virtualenv (ick!)
+  # shellcheck source=/dev/null
   source ~/.virtualenv/khan27/bin/activate
 
-  # Add frankenserver bins to PATH (I never refer to these directly..)
+  # Add frankenserver bins to PATH (I never refer to these directly.. so no)
   # export PATH="$HOME/src/khan/webapp/third_party/frankenserver:$PATH"
 
   # Add devtools bins to PATH
   KA_DEVROOT="$HOME/src/khan/devtools"
   export PATH="$KA_DEVROOT/arcanist/khan-bin:$PATH"
-  # everything below I globally handle via homebrew for now...
+  # everything below I globally handle via homebrew for now, yay!...
   # export PATH="$KA_DEVROOT/git-bigfile/bin:$PATH"
   # export PATH="$KA_DEVROOT/git-workflow/bin:$PATH"
   # export PATH="$KA_DEVROOT/ka-clone/bin:$PATH"

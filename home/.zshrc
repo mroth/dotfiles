@@ -1,6 +1,9 @@
 # User shell configuration
 # As a reminder .zshrc is for stuff that modifies the INTERACTIVE shell only.
 
+# Where my custom zsh functions live
+fpath=( ~/.zfunctions "${fpath[@]}" )
+
 # Caches the output of a binary initialization command, to avoid the time to execute it in the future.
 # Usage: eval_cache <command> <generation args...>
 export ZSH_EVAL_CACHE_DIR="$HOME/.zsh-cache"
@@ -109,7 +112,7 @@ profile_stop "homeshick"
 profile_start "shell-env"
 [ -s "$HOME/.shell_aliases.sh" ]     && source "$HOME/.shell_aliases.sh"
 [ -s "$HOME/.shell_environment.sh" ] && source "$HOME/.shell_environment.sh"
-[ -s "$HOME/.shell_functions.sh" ]   && source "$HOME/.shell_functions.sh"
+autoload -Uz _git_email_prompt_info canhaz khanify
 profile_stop "shell-env"
 
 profile_stop ".zshrc"
