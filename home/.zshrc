@@ -4,25 +4,6 @@
 # Where my custom zsh functions live
 fpath=( ~/.zfunctions "${fpath[@]}" )
 
-# Caches the output of a binary initialization command, to avoid the time to execute it in the future.
-# Usage: eval_cache <command> <generation args...>
-export ZSH_EVAL_CACHE_DIR="$HOME/.zsh-cache"
-function zsh_eval_cache () {
-  local cacheFile="$ZSH_EVAL_CACHE_DIR/init-$1.sh"
-  if [ -s $cacheFile ]; then
-    source $cacheFile
-  else
-    if type "$1" > /dev/null; then
-      (>&2 echo "$1 initialization not cached, caching output of: $*")
-      mkdir -p "$ZSH_EVAL_CACHE_DIR"
-      $* > "$cacheFile"
-      source "$cacheFile"
-    else
-      echo "zsh_eval_cache ERROR: $1 is not installed or in PATH"
-    fi
-  fi
-}
-
 # set up some very basic profiling of how long zshrc takes to load.
 # to test, use: ZSHRC_PROFILE=true zsh -ic "exit"
 declare -A ZSHRC_LOAD_START=()
@@ -60,7 +41,14 @@ COMPLETION_WAITING_DOTS="true"  # red dots whilst waiting for completion.
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(docker docker-compose golang heroku osx virtualenv zsh-syntax-highlighting)
+# default OMZ plugins
+plugins=(docker docker-compose golang heroku osx virtualenv)
+
+# installed via bootslap (TODO: this install method sucks!)
+plugins+=(zsh-syntax-highlighting)
+
+# custom plugins
+plugins+=(evalcache)
 
 #
 # source oh-my-zsh (in a safe way, unlike their template!)
@@ -72,30 +60,21 @@ profile_stop "oh-my-zsh"
 # alias hub to git when installed
 #
 profile_start "hub"
-zsh_eval_cache hub alias -s
-# if type hub > /dev/null; then
-#   eval "$(hub alias -s)"
-# fi
+_evalcache hub alias -s
 profile_stop "hub"
 
 #
 # load rbenv in fairly smart way
 #
 profile_start "rbenv"
-zsh_eval_cache rbenv init --no-rehash - zsh
-# if type rbenv > /dev/null; then
-#   eval "$(rbenv init --no-rehash - zsh)"
-# fi
+_evalcache rbenv init --no-rehash - zsh
 profile_stop "rbenv"
 
 #
 # scmpuff to enhance git further
 #
 profile_start "scmpuff"
-zsh_eval_cache scmpuff init -s
-# if type scmpuff > /dev/null; then
-#   eval "$(scmpuff init -s)"
-# fi
+_evalcache scmpuff init -s
 profile_stop "scmpuff"
 
 #
