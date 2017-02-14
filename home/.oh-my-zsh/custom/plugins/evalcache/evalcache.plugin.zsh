@@ -24,6 +24,6 @@ function _evalcache () {
   fi
 }
 
-# function _evalcache_clear () {
-#   rm -i $ZSH_EVALCACHE_DIR
-# }
+function _evalcache_clear () {
+  rm -i "$ZSH_EVALCACHE_DIR"/init-*.sh
+}

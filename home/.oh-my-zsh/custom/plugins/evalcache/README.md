@@ -14,4 +14,3 @@ TODO: installation instructions for OMZ, antigen, prezto etc
 ## TODO
 - allow overriding `$ZSH_EVALCACHE_DIR`
 - environment variable to bypass cache
-- built-in command to clear cache
