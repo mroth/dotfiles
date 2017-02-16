@@ -33,7 +33,7 @@ profile_start ".zshrc"
 #
 profile_start "oh-my-zsh"
 export ZSH=$HOME/.oh-my-zsh     # Path to your oh-my-zsh installation
-ZSH_THEME="blinks-mroth"        # Set name of the theme to load.
+ZSH_THEME="blinks"              # Set name of the theme to load.
 DISABLE_AUTO_UPDATE="true"      # Disable auto-update checks. (speed up!)
 COMPLETION_WAITING_DOTS="true"  # red dots whilst waiting for completion.
 
@@ -42,18 +42,19 @@ COMPLETION_WAITING_DOTS="true"  # red dots whilst waiting for completion.
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # default OMZ plugins
-plugins=(docker docker-compose golang heroku osx virtualenv)
+plugins=(docker docker-compose golang heroku osx)
 
 # installed via bootslap (TODO: this install method sucks!)
 plugins+=(zsh-syntax-highlighting)
 
 # custom plugins
-plugins+=(evalcache)
+plugins+=(evalcache git-prompt-useremail)
 
 #
 # source oh-my-zsh (in a safe way, unlike their template!)
 #
 [ -s "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"
+export RPROMPT='$(git_prompt_useremail_symbol) '
 profile_stop "oh-my-zsh"
 
 #
@@ -91,7 +92,7 @@ profile_stop "homeshick"
 profile_start "shell-env"
 [ -s "$HOME/.shell_aliases.sh" ]     && source "$HOME/.shell_aliases.sh"
 [ -s "$HOME/.shell_environment.sh" ] && source "$HOME/.shell_environment.sh"
-autoload -Uz _git_email_prompt_info canhaz khanify
+autoload -Uz canhaz khanify
 profile_stop "shell-env"
 
 profile_stop ".zshrc"

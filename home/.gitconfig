@@ -52,3 +52,13 @@
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
+
+# gitprompt useremails
+[emailprompt "mrothenberg@gmail.com"]
+	prompt = 🚀
+[emailprompt "mroth@khanacademy.org"]
+	prompt = 🌱
+[emailprompt "mroth@polaroid.io"]
+	prompt = 🌈
+[emailprompt "mroth@users.noreply.github.com"]
+	prompt = 💫
