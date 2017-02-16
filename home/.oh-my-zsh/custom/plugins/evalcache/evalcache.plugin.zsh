@@ -10,13 +10,13 @@ export ZSH_EVALCACHE_DIR="$HOME/.zsh-evalcache"
 function _evalcache () {
   local cacheFile="$ZSH_EVALCACHE_DIR/init-$1.sh"
 
-  if [ -s $cacheFile ]; then
-    source $cacheFile
+  if [ -s "$cacheFile" ]; then
+    source "$cacheFile"
   else
     if type "$1" > /dev/null; then
       (>&2 echo "$1 initialization not cached, caching output of: $*")
       mkdir -p "$ZSH_EVALCACHE_DIR"
-      $* > "$cacheFile"
+      "$@" > "$cacheFile"
       source "$cacheFile"
     else
       echo "evalcache ERROR: $1 is not installed or in PATH"
