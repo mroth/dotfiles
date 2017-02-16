@@ -4,8 +4,7 @@
 # Usage: _evalcache <command> <generation args...>
 
 # default cache directory
-# TODO: allow to be overriden by environment
-export ZSH_EVALCACHE_DIR="$HOME/.zsh-evalcache"
+export ZSH_EVALCACHE_DIR=${ZSH_EVALCACHE_DIR:-"$HOME/.zsh-evalcache"}
 
 function _evalcache () {
   local cacheFile="$ZSH_EVALCACHE_DIR/init-$1.sh"

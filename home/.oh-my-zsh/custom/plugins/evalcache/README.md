@@ -7,6 +7,11 @@ TODO: explanation with example
 
 Intended for zshrc..
 
+## Options
+
+- `$ZSH_EVALCACHE_DIR`: cache files storage, default: `$HOME/.zsh-evalcache`
+
+
 ## Installation
 
 TODO: installation instructions for OMZ, antigen, prezto etc
