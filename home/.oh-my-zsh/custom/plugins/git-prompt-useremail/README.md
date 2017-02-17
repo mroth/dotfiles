@@ -37,6 +37,9 @@ macOS terminal. The single quotation marks are important though, so that the
 execution happens every time $RPROMPT is evaluated rather than when you first
 set it._
 
+![screenshot](https://cloud.githubusercontent.com/assets/40650/23047689/3ec1dd8e-f466-11e6-95e9-dfbd3b108839.png)
+
+
 ## Installation
 
 TODO
