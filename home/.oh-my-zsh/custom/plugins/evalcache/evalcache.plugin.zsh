@@ -9,7 +9,9 @@ export ZSH_EVALCACHE_DIR=${ZSH_EVALCACHE_DIR:-"$HOME/.zsh-evalcache"}
 function _evalcache () {
   local cacheFile="$ZSH_EVALCACHE_DIR/init-$1.sh"
 
-  if [ -s "$cacheFile" ]; then
+  if [ "$ZSH_EVALCACHE_DISABLE" = "true" ]; then
+    eval "$("$@")"
+  elif [ -s "$cacheFile" ]; then
     source "$cacheFile"
   else
     if type "$1" > /dev/null; then
