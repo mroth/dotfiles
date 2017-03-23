@@ -65,13 +65,6 @@ _evalcache hub alias -s
 profile_stop "hub"
 
 #
-# load rbenv in fairly smart way
-#
-profile_start "rbenv"
-_evalcache rbenv init --no-rehash - zsh
-profile_stop "rbenv"
-
-#
 # scmpuff to enhance git further
 #
 profile_start "scmpuff"
