@@ -27,35 +27,33 @@ function profile_stop () {
 profile_start ".zshrc"
 
 #
-# oh-my-zsh configuration
-#   for reference later or additional variables, use the template file:
-#   ~/.oh-my-zsh/templates/zshrc.zsh-template
+# antigen
 #
-profile_start "oh-my-zsh"
-export ZSH=$HOME/.oh-my-zsh     # Path to your oh-my-zsh installation
-ZSH_THEME="blinks"              # Set name of the theme to load.
-DISABLE_AUTO_UPDATE="true"      # Disable auto-update checks. (speed up!)
-COMPLETION_WAITING_DOTS="true"  # red dots whilst waiting for completion.
+profile_start "antigen"
+antigenSrc="/usr/local/share/antigen/antigen.zsh"
+if [ -s "$antigenSrc" ]; then
+  source $antigenSrc
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-# default OMZ plugins
-plugins=(docker docker-compose golang heroku osx)
+  # OMZ plugins
+  antigen use oh-my-zsh
+  antigen bundle docker
+  antigen bundle docker-compose
+  antigen bundle golang
+  antigen bundle heroku
+  antigen bundle osx
 
-# installed via bootslap (TODO: this install method sucks!)
-plugins+=(zsh-syntax-highlighting)
+  # other plugins
+  antigen bundle zsh-users/zsh-syntax-highlighting
 
-# custom plugins
-plugins+=(evalcache git-prompt-useremail)
+  # local custom plugins
+  # TODO: extract me out of dotfiles repo into own repositories
+  antigen bundle $HOME/.oh-my-zsh/custom/plugins/evalcache
+  antigen bundle $HOME/.oh-my-zsh/custom/plugins/git-prompt-useremail
 
-#
-# source oh-my-zsh (in a safe way, unlike their template!)
-#
-[ -s "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"
-export RPROMPT='$(git_prompt_useremail_symbol) '
-profile_stop "oh-my-zsh"
+  antigen theme blinks
+  antigen apply
+fi
+profile_stop "antigen"
 
 #
 # alias hub to git when installed
@@ -97,3 +95,4 @@ unfunction profile_start profile_stop
 if [ -n "$VSCODE_CLI" ]; then
   export PROMPT="$ "
 fi
+export RPROMPT='$(git_prompt_useremail_symbol) '
