@@ -45,10 +45,9 @@ if [ -s "$antigenSrc" ]; then
   # other plugins
   antigen bundle zsh-users/zsh-syntax-highlighting
 
-  # local custom plugins
-  # TODO: extract me out of dotfiles repo into own repositories
-  antigen bundle $HOME/.oh-my-zsh/custom/plugins/evalcache
-  antigen bundle $HOME/.oh-my-zsh/custom/plugins/git-prompt-useremail
+  # my awesomely neato personal plugins
+  antigen bundle mroth/evalcache
+  antigen bundle mroth/git-prompt-useremail
 
   antigen theme blinks
   antigen apply
