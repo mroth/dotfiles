@@ -17,6 +17,11 @@ export PATH=$PATH:$GOPATH/bin
 export GOCODE=$GOPATH/src/github.com/mroth
 
 #
+# and now rust wants to have its own path as well (kinda, way less annoying tho)
+#
+export PATH="$HOME/.cargo/bin:$PATH"
+
+#
 # lolcommits related prefs
 #
 export LOLCOMMITS_DELAY=1
