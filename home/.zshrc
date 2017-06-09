@@ -88,10 +88,11 @@ profile_stop "shell-env"
 profile_stop ".zshrc"
 unfunction profile_start profile_stop
 
+export RPROMPT='$(git_prompt_useremail_symbol) '
 #
 # Minimal prompt override if in VSCODE integrated terminal
 #
-if [ -n "$VSCODE_CLI" ]; then
+if [ -n "$VSCODE_PID" ]; then
   export PROMPT="$ "
+  export RPROMPT=""
 fi
-export RPROMPT='$(git_prompt_useremail_symbol) '
