@@ -43,7 +43,8 @@ if [ -s "$antigenSrc" ]; then
   antigen bundle osx
 
   # other plugins
-  antigen bundle zsh-users/zsh-syntax-highlighting
+  #antigen bundle zsh-users/zsh-syntax-highlighting
+  antigen bundle zdharma/fast-syntax-highlighting
 
   # my awesomely neato personal plugins
   antigen bundle mroth/evalcache
