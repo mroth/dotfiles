@@ -9,7 +9,7 @@ alias td='ack TODO'
 
 # for obsessive version checking
 alias brewsup='brew update && brew outdated'
-alias brewup='brew upgrade --all && brew cleanup'
+alias brewup='brew upgrade && brew cleanup'
 
 # since you have to type it so much
 alias be='bundle exec'
