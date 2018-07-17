@@ -32,7 +32,7 @@
 
 [alias]
 	amend = commit --amend -C HEAD
-	squash = rebase -i --autosquash
+	smash = rebase --autosquash --committer-date-is-author-date
 	log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 [hub]
