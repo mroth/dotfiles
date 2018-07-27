@@ -83,7 +83,7 @@ profile_stop "homeshick"
 profile_start "shell-env"
 [ -s "$HOME/.shell_aliases.sh" ]     && source "$HOME/.shell_aliases.sh"
 [ -s "$HOME/.shell_environment.sh" ] && source "$HOME/.shell_environment.sh"
-autoload -Uz canhaz khanify
+autoload -Uz canhaz
 profile_stop "shell-env"
 
 profile_stop ".zshrc"
