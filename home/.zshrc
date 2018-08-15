@@ -93,7 +93,7 @@ export RPROMPT='$(git_prompt_useremail_symbol) '
 #
 # Minimal prompt override if in VSCODE integrated terminal
 #
-if [ -n "$VSCODE_PID" ]; then
+if [ "$TERM_PROGRAM" = "vscode" ]; then
   export PROMPT="$ "
   export RPROMPT=""
 fi
