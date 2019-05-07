@@ -7,7 +7,7 @@ alias lsd='ls -od \.*'
 alias homesick=homeshick
 
 # my code todos
-alias td='ack TODO'
+alias td='rg TODO'
 
 # for obsessive version checking
 alias brewsup='brew update && brew outdated'
