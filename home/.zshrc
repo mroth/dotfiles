@@ -53,7 +53,6 @@ if [ -s "$antigenSrc" ]; then
   antigen bundle docker
   antigen bundle docker-compose
   antigen bundle golang
-  antigen bundle heroku
   antigen bundle osx
 
   # other plugins
