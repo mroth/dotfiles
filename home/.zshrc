@@ -27,6 +27,19 @@ function profile_stop () {
 
 profile_start ".zshrc"
 
+# homebrew completions
+#
+# This must occur prior to compinit being invoked, which OMZ does automatically
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+# 
+# Originally `FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH`,
+# but brew prefix path hardcoded to avoid extra shellcall invocation (saves 20+ms!)
+profile_start "brew-comp"
+if type brew &>/dev/null; then
+  FPATH=/usr/local/share/zsh/site-functions:$FPATH
+fi
+profile_stop "brew-comp"
+
 #
 # antigen
 #
