@@ -24,3 +24,20 @@ source_if_exists ~/.shell_environment.sh
 # source git completion from homebrew git install (always brew install git!)
 #
 source_if_exists /usr/local/etc/bash_completion.d/git-completion.bash
+
+# source all homebrew provided completions for bash
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-bash
+#
+# modified for speed, see: https://github.com/Homebrew/brew/pull/6105
+# HOMEBREW_PREFIX=$(brew --prefix)
+HOMEBREW_PREFIX=/usr/local
+if type brew &>/dev/null; then
+  for COMPLETION in "$HOMEBREW_PREFIX"/etc/bash_completion.d/*
+  do
+    [[ -f $COMPLETION ]] && source "$COMPLETION"
+  done
+  if [[ -f ${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh ]];
+  then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  fi
+fi
