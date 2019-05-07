@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # list dotfiles
 alias lsd='ls -od \.*'
 

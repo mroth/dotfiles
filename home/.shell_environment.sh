@@ -1,3 +1,5 @@
+#!/bin/sh
+
 #
 # global environment settings/variables
 #
