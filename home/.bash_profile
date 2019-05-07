@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# bashrc is executed for all interactive bash shells
+# bashrc is executed for all interactive bash shells,
+# but macos seems to prefer bash_profile these days...
 #
 # I use zsh so this is just for in case I need to go in there for some reason
 # make sure some important stuff works?
