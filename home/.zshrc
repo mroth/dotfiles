@@ -1,3 +1,4 @@
+#!/bin/zsh
 # User shell configuration
 # As a reminder .zshrc is for stuff that modifies the INTERACTIVE shell only.
 
