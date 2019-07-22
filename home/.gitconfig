@@ -61,5 +61,7 @@
 	prompt = 🌱
 [emailprompt "mroth@consensys.net"]
 	prompt = 🌀
+[emailprompt "mroth@openlaw.io"]
+	prompt = ⚖️
 [emailprompt "mroth@users.noreply.github.com"]
 	prompt = 🐙
