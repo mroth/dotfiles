@@ -61,3 +61,7 @@
 	prompt = 👾
 [emailprompt "mroth@users.noreply.github.com"]
 	prompt = 🐙
+
+# https://git-scm.com/docs/git-config#_conditional_includes
+[includeIf "gitdir:~/src/openlaw/"]
+	path = ~/.gitconfig.openlaw.inc
