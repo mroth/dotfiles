@@ -38,10 +38,6 @@
 [hub]
 	protocol = https
 
-# see: https://github.com/khan/ka-clone
-[kaclone]
-	email = mroth@khanacademy.org
-
 # GitHub for Mac insists on adding these whenever it launches, so let's check it
 # in a way that we at least knows where it comes from.
 [filter "hawser"]
