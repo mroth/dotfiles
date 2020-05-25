@@ -64,4 +64,4 @@
 
 # https://git-scm.com/docs/git-config#_conditional_includes
 [includeIf "gitdir:~/src/openlaw/"]
-	path = ~/.gitconfig.openlaw.inc
+	path = ~/src/openlaw/.gitconfig.inc
