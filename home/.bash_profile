@@ -18,8 +18,6 @@ function source_if_exists {
         source "${file}"
     fi
 }
-source_if_exists ~/.shell_aliases.sh
-source_if_exists ~/.shell_environment.sh
 
 #
 # source git completion from homebrew git install (always brew install git!)
