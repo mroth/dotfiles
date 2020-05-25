@@ -91,6 +91,15 @@ HOMESHICK="$HOME/.homesick/repos/homeshick/homeshick.sh"
 profile_stop "homeshick"
 
 #
+# gcloud completions
+#
+profile_start "gcloud"
+GCLOUD="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+# [ -s "$GCLOUD/path.zsh.inc" ]       && source "$GCLOUD/path.zsh.inc"
+[ -s "$GCLOUD/completion.zsh.inc" ] && source "$GCLOUD/completion.zsh.inc"
+profile_stop "gcloud"
+
+#
 # source my main interactive shell environment configurations
 #
 profile_start "shell-env"
