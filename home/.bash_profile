@@ -42,3 +42,7 @@ if type brew &>/dev/null; then
     source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
   fi
 fi
+
+# ultra simple shell prompt, since I use bash mostly for CLI app screenshots and
+# dont want any personalized info
+export PS1="\[\e[2m\]$\[\e[0m\] "
