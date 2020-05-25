@@ -27,7 +27,9 @@ function profile_stop () {
 
 profile_start ".zshrc"
 
-# homebrew completions
+#############################################################################
+# HOMEBREW COMPLETIONS
+#############################################################################
 #
 # This must occur prior to compinit being invoked, which OMZ does automatically
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
@@ -40,9 +42,9 @@ if type brew &>/dev/null; then
 fi
 profile_stop "brew-comp"
 
-#
-# antigen
-#
+#############################################################################
+# ANTIGEN ZSH PLUGIN MANAGER
+#############################################################################
 profile_start "antigen"
 antigenSrc="/usr/local/share/antigen/antigen.zsh"
 if [ -s "$antigenSrc" ]; then
@@ -68,45 +70,43 @@ if [ -s "$antigenSrc" ]; then
 fi
 profile_stop "antigen"
 
-#
+#############################################################################
 # alias hub to git when installed
-#
+#############################################################################
 profile_start "hub"
 _evalcache hub alias -s
 profile_stop "hub"
 
-#
+#############################################################################
 # scmpuff to enhance git further
-#
+#############################################################################
 profile_start "scmpuff"
 _evalcache scmpuff init -s
 profile_stop "scmpuff"
 
-#
+#############################################################################
 # load homeshick for dotfile management
-#
+#############################################################################
 profile_start "homeshick"
 HOMESHICK="$HOME/.homesick/repos/homeshick/homeshick.sh"
 [ -s "$HOMESHICK" ]  && source "$HOMESHICK"
 profile_stop "homeshick"
 
-#
+#############################################################################
 # gcloud completions
-#
+#############################################################################
 profile_start "gcloud"
 GCLOUD="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
 # [ -s "$GCLOUD/path.zsh.inc" ]       && source "$GCLOUD/path.zsh.inc"
 [ -s "$GCLOUD/completion.zsh.inc" ] && source "$GCLOUD/completion.zsh.inc"
 profile_stop "gcloud"
 
-#
-# source my main interactive shell environment configurations
-#
+#############################################################################
+# SHELL ENVIRONMENT
+#############################################################################
 profile_start "shell-env"
 
-#
-# shell aliases
-#
+### shell aliases ###
 
 # list dotfiles
 alias lsd='ls -od \.*'
@@ -129,9 +129,7 @@ alias be='bundle exec'
 # since I'm noncommital just alias instead of polluting $PATH or symlinking
 alias airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
 
-#
-# shell environment
-#
+### shell environment ###
 
 # global environment settings/variables
 export EDITOR='vim'
@@ -163,19 +161,20 @@ export PYTHONDONTWRITEBYTECODE=1
 export DOTFILES="$HOME/.homesick/repos/dotfiles/home"
 export ICLOUD="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 
-# load zfunctions
-autoload -Uz canhaz
-
-profile_stop "shell-env"
-
-profile_stop ".zshrc"
-unfunction profile_start profile_stop
-
+# configure right prompt for git prompt useremail setup
 export RPROMPT='$(git_prompt_useremail_symbol) '
-#
+
 # Minimal prompt override if in VSCODE integrated terminal
-#
 if [ "$TERM_PROGRAM" = "vscode" ]; then
   export PROMPT="$ "
   export RPROMPT=""
 fi
+
+### load zfunctions ###
+autoload -Uz canhaz
+
+profile_stop "shell-env"
+
+
+profile_stop ".zshrc"
+unfunction profile_start profile_stop
