@@ -1,8 +1,9 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color schemes
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax on
 set background=dark
-colorscheme solarized
+colorscheme default
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Convenience stuff for specific dev environments
