@@ -56,6 +56,8 @@
 # gitprompt useremails
 [emailprompt "mrothenberg@gmail.com"]
 	prompt = 🚀
+[emailprompt "mroth@users.noreply.github.com"]
+	prompt = 🐙
 [emailprompt "mroth@flickr.com"]
 	prompt = 🌈🐼
 [emailprompt "mroth@bitly.com"]
@@ -66,8 +68,6 @@
 	prompt = 🌀
 [emailprompt "mroth@openlaw.io"]
 	prompt = ⚖️
-[emailprompt "mroth@users.noreply.github.com"]
-	prompt = 🐙
 
 # https://git-scm.com/docs/git-config#_conditional_includes
 [includeIf "gitdir:~/src/openlaw/"]
