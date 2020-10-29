@@ -47,13 +47,15 @@
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
 	required = true
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 
-# gitprompt useremails
+# git-prompt-useremail settings.
+# see https://github.com/mroth/git-prompt-useremail
 [emailprompt "mrothenberg@gmail.com"]
 	prompt = 👀
 [emailprompt "mroth@users.noreply.github.com"]
@@ -71,6 +73,7 @@
 [emailprompt "mroth@openlaw.io"]
 	prompt = ⚖️
 
+# include org specific directives based on location.
 # https://git-scm.com/docs/git-config#_conditional_includes
 [includeIf "gitdir:~/src/openlaw/"]
 	path = ~/src/openlaw/.gitconfig.inc
