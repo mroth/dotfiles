@@ -55,9 +55,11 @@
 
 # gitprompt useremails
 [emailprompt "mrothenberg@gmail.com"]
-	prompt = 🚀
+	prompt = 👀
 [emailprompt "mroth@users.noreply.github.com"]
-	prompt = 🐙
+	prompt = 👤
+[emailprompt "mroth@rocket.ws"]
+	prompt = 🚀
 [emailprompt "mroth@flickr.com"]
 	prompt = 🌈🐼
 [emailprompt "mroth@bitly.com"]
