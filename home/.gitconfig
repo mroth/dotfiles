@@ -72,6 +72,8 @@
 	prompt = 🌀
 [emailprompt "mroth@openlaw.io"]
 	prompt = ⚖️
+[emailprompt "mrothenberg@stripe.com"]
+	prompt = 🦀
 
 # include org specific directives based on location.
 # https://git-scm.com/docs/git-config#_conditional_includes
