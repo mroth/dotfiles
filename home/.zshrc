@@ -89,7 +89,7 @@ if [ -s "$antigenSrc" ]; then
   antigen bundle zdharma-continuum/fast-syntax-highlighting
 
   # my awesomely neato personal plugins
-  antigen bundle mroth/evalcache
+  # antigen bundle mroth/evalcache
   antigen bundle mroth/git-prompt-useremail
 
   antigen theme blinks
@@ -101,7 +101,14 @@ profile_stop "antigen"
 # scmpuff to enhance git further
 #############################################################################
 profile_start "scmpuff"
-_evalcache scmpuff init -s
+# scmpuff init is so fast now there is marginal returns from using evalcache,
+# so disable for less complexity.
+# _evalcache scmpuff init -s
+
+if hash scmpuff 2>/dev/null; then
+  eval "$(scmpuff init -s)"
+fi
+
 profile_stop "scmpuff"
 
 #############################################################################
