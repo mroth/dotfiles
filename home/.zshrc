@@ -88,11 +88,11 @@ profile_stop "homeshick"
 #############################################################################
 # gcloud completions
 #############################################################################
-profile_start "gcloud"
-GCLOUD="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+# profile_start "gcloud"
+# GCLOUD="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
 # [ -s "$GCLOUD/path.zsh.inc" ]       && source "$GCLOUD/path.zsh.inc"
-[ -s "$GCLOUD/completion.zsh.inc" ] && source "$GCLOUD/completion.zsh.inc"
-profile_stop "gcloud"
+# [ -s "$GCLOUD/completion.zsh.inc" ] && source "$GCLOUD/completion.zsh.inc"
+# profile_stop "gcloud"
 
 #############################################################################
 # SHELL ENVIRONMENT
