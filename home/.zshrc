@@ -55,7 +55,7 @@ if [ -s "$antigenSrc" ]; then
   antigen bundle docker
   antigen bundle docker-compose
   antigen bundle golang
-  antigen bundle osx
+  antigen bundle macos
 
   # other plugins
   #antigen bundle zsh-users/zsh-syntax-highlighting
