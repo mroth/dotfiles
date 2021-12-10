@@ -28,6 +28,33 @@ function profile_stop () {
 profile_start ".zshrc"
 
 #############################################################################
+# HOMEBREW PREFIX
+#############################################################################
+#
+# Some of the paths sourced here are based upon knowing the HOMEBREW_PREFIX.
+# Invoking $(brew --prefix) takes about ~25ms on average, so previously I 
+# hardcoded this value, assuming it would always be in the standard location.
+# However, the standard location now differs based on whether the mac is on
+# x86_64 or arm64 architecture.
+#
+# $(/usr/bin/uname -m) averages only ~1ms, and is what the homebrew installer
+# uses to determine the default brew installation path, so we can replicate
+# that logic.
+profile_start "brew-prefix"
+UNAME_MACHINE=$(/usr/bin/uname -m)
+if [[ "${UNAME_MACHINE}" == "arm64" ]]
+then
+  # On ARM macOS, default script installs to /opt/homebrew only
+  HOMEBREW_PREFIX="/opt/homebrew"
+  HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}"
+else
+  # On Intel macOS, default script installs to /usr/local only
+  HOMEBREW_PREFIX="/usr/local"
+  HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
+fi
+profile_stop "brew-prefix"
+
+#############################################################################
 # HOMEBREW COMPLETIONS
 #############################################################################
 #
@@ -38,7 +65,7 @@ profile_start ".zshrc"
 # but brew prefix path hardcoded to avoid extra shellcall invocation (saves 20+ms!)
 profile_start "brew-comp"
 if type brew &>/dev/null; then
-  FPATH=/usr/local/share/zsh/site-functions:$FPATH
+  FPATH=${HOMEBREW_PREFIX}/share/zsh/site-functions:$FPATH
 fi
 profile_stop "brew-comp"
 
@@ -46,7 +73,7 @@ profile_stop "brew-comp"
 # ANTIGEN ZSH PLUGIN MANAGER
 #############################################################################
 profile_start "antigen"
-antigenSrc="/usr/local/share/antigen/antigen.zsh"
+antigenSrc="${HOMEBREW_PREFIX}/share/antigen/antigen.zsh"
 if [ -s "$antigenSrc" ]; then
   source $antigenSrc
 
