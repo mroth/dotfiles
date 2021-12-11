@@ -2,9 +2,6 @@
 # User shell configuration
 # As a reminder .zshrc is for stuff that modifies the INTERACTIVE shell only.
 
-# Where my custom zsh functions live
-fpath=( ~/.zfunctions "${fpath[@]}" )
-
 # set up some very basic profiling of how long zshrc takes to load.
 # to test, use: ZSHRC_PROFILE=true zsh -ic "exit"
 declare -A ZSHRC_LOAD_START=()
@@ -196,11 +193,7 @@ if [ "$TERM_PROGRAM" = "vscode" ]; then
   export RPROMPT=""
 fi
 
-### load zfunctions ###
-autoload -Uz canhaz
-
 profile_stop "shell-env"
-
 
 profile_stop ".zshrc"
 unfunction profile_start profile_stop
