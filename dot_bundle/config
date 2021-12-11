@@ -1,0 +1,4 @@
+---
+BUNDLE_BIN: ".bundle/binstubs"
+BUNDLE_PATH: ".bundle"
+BUNDLE_JOBS: "8"

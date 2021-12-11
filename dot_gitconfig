@@ -1,0 +1,82 @@
+[user]
+	name = Matthew Rothenberg
+	email = mrothenberg@gmail.com
+
+[github]
+	user = mroth
+
+[core]
+	excludesfile = ~/.gitignore
+
+[color]
+	ui = true
+
+[diff]
+	tool = opendiff
+
+[merge]
+	tool = opendiff
+
+[rebase]
+	autosquash = true
+	autostash = true
+
+[push]
+	default = simple
+
+[pull]
+	ff = only
+
+[core]
+	quotepath = false
+
+[credential]
+	helper = osxkeychain
+
+[alias]
+	amend = commit --amend -C HEAD
+	smash = rebase --autosquash --committer-date-is-author-date
+	log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[init]
+	defaultBranch = main
+
+
+# GitHub for Mac insists on adding these whenever it launches, so let's check it
+# in a way that we at least knows where it comes from.
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+# git-prompt-useremail settings.
+# see https://github.com/mroth/git-prompt-useremail
+[emailprompt "mrothenberg@gmail.com"]
+	prompt = 👀
+[emailprompt "mroth@users.noreply.github.com"]
+	prompt = 👤
+[emailprompt "mroth@rocket.ws"]
+	prompt = 🚀
+[emailprompt "mroth@flickr.com"]
+	prompt = 🌈🐼
+[emailprompt "mroth@bitly.com"]
+	prompt = 🐡
+[emailprompt "mroth@khanacademy.org"]
+	prompt = 🌱
+[emailprompt "mroth@consensys.net"]
+	prompt = 🌀
+[emailprompt "mroth@openlaw.io"]
+	prompt = ⚖️
+[emailprompt "mrothenberg@stripe.com"]
+	prompt = 🦀
+
+# include org specific directives based on location.
+# https://git-scm.com/docs/git-config#_conditional_includes
+[includeIf "gitdir:~/src/openlaw/"]
+	path = ~/src/openlaw/.gitconfig.inc

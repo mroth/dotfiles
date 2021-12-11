@@ -1,0 +1,219 @@
+##### Crawl Init file ###############################################
+# For descriptions of all options, as well as some more in-depth information
+# on setting them, consult the file
+#    options_guide.txt
+# in your /docs directory. If you can't find it, the file is also available
+# online at:
+# https://github.com/crawl/crawl/blob/master/crawl-ref/docs/options_guide.txt
+
+####################
+# UI Configuration #
+####################
+
+# If playing online with webtiles, override some defaults. I find not seeing
+# the movement on auto-explore too confusing, so re-enable that. Leave the rest
+# as default for lag-abatement.
+:if crawl.is_webtiles() then
+  travel_delay = -1
+  explore_delay = 20
+# On the other hand, when playing locally, enable travel_trail so it feels more
+# similar to online play, to not create as much
+:else
+  show_travel_trail = true
+  tile_skip_title = true
+:end
+
+
+######################
+# Game Configuration #
+######################
+
+# When set to true, new characters will start with skill training set to manual
+# mode instead of automatic mode. This will also set the [!] selection on the
+# skill (m) menu to "cost" by default, instead of "training".
+default_manual_training = true
+
+# If this is true, 'W'ear will also allow you to 'T'ake off worn armour, and
+# vice versa, and the same is true for 'P'utting on/ 'R'emoving jewellery.
+equip_unequip = true
+
+# Don't waste so much time thinking about food.
+easy_eat_chunks = false
+easy_eat_gourmand = true
+auto_butcher = true
+auto_eat_chunks = true
+auto_drop_chunks = rotten
+
+# stop remembering name plz
+remember_name = false
+
+
+###########
+# Prompts #
+###########
+
+# Setting this option to false will cause the game not to prompt
+# if more than a window-full of messages are output at once. This
+# option has no effect if clear_messages is set. Additionally, it
+# has no effect on whether force_more_message triggers.
+show_more = false
+
+# Big list of interrupts taken from Ultraviolent4's rcfile
+# https://crawl.project357.org/rc-files/0.19/Ultraviolent4.rc
+# (with some slight modifications)
+more := force_more_message
+
+# distortion
+more += Space warps horribly around you
+more += hits you.*distortion
+more += Space bends around you\.
+more += Your surroundings suddenly seem different.
+more += Its appearance distorts for a moment.
+
+# torment/holy wrath
+more += You convulse
+
+# dispel breath
+more += dispelling energy hits you
+
+more += You fall through a shaft
+
+# abyss convenience prompts
+more += Found an abyssal rune
+more += Found a gateway leading out of the Abyss
+
+# necromutation
+more += Your transformation is almost over.
+more += You feel yourself coming back to life
+
+# summon greater demon
+more += is no longer charmed
+
+# Announcements of timed portal vaults:
+more += interdimensional caravan
+more += distant snort
+more += roar of battle
+more += wave of frost
+more += hiss of flowing sand
+more += sound of rushing water
+more += oppressive heat about you
+more += crackle of arcane power
+more += Found a gateway leading out of the Abyss
+more += Found .* abyssal rune of Zot
+more += You feel a terrible weight on your shoulders
+more += .* resides here
+
+# Interrupts
+more += You don't.* that spell
+more += You miscast (Controlled Blink|Blink|Death's|Borg|Necromutation)
+more += You can't (read|drink|do) that
+more += That item cannot be evoked
+more += This wand has no charges
+more += You are held in a net
+more += You have disarmed
+more += You don't have any such object
+more += do not work when you're silenced
+more += You can't unwield
+more += enough magic points
+more += You feel your control is inadequate
+more += Something interferes with your magic
+
+# Bad things
+more += Your surroundings flicker
+more += You cannot teleport right now
+more += The writing blurs in front of your eyes
+more += You fall through a shaft
+more += A huge blade swings out and slices into you!
+more += (blundered into a|invokes the power of) Zot
+more += Ouch! That really hurt!
+more += dispelling energy hits you
+more += You convulse
+more += You are (blasted|electrocuted)
+more += You are.*confused
+more += flesh start
+more += (starving|devoid of blood)
+more += wrath finds you
+more += god:(sends|finds|silent|anger)
+more += You feel a surge of divine spite
+more += lose consciousness
+more += You are too injured to fight blindly
+more += calcifying dust hits
+more += Space warps horribly around you
+more += hits you.*distortion
+more += Space bends around you\.
+more += watched by something
+more += A sentinel's mark forms upon you
+more += Your limbs have turned to stone
+more += You are slowing down
+more += .*LOW HITPOINT WARNING.*
+more += warns you.*of distortion
+more += lethally poison
+more += space bends around your
+more += wielding.*of (distortion|chaos)
+
+# Hell effects
+# Re-enabled
+more += "You will not leave this place."
+more += "Die, mortal!"
+more += "We do not forgive those who trespass against us!"
+more += "Trespassers are not welcome here!"
+more += "You do not belong in this place!"
+more += "Leave now, before it is too late!"
+more += "We have you now!"
+more += You smell brimstone.
+more += Brimstone rains from above.
+more += You feel lost and a long, long way from home...
+more += You shiver with fear.
+more += You feel a terrible foreboding...
+more += Something frightening happens.
+more += You sense an ancient evil watching you...
+more += You suddenly feel all small and vulnerable.
+more += You sense a hostile presence.
+more += A gut-wrenching scream fills the air!
+more += You hear words spoken in a strange and terrible language...
+more += You hear diabolical laughter!
+
+# Expiring effects
+more += You feel yourself slow down
+more += less insulated
+more += You are starting to lose your buoyancy
+more += You lose control over your flight
+more += Your hearing returns
+more += Your transformation is almost over
+more += You have a feeling this form
+more += You feel yourself come back to life
+more += uncertain
+more += time is quickly running out
+more += life is in your own hands
+more += is no longer charmed
+more += shroud falls apart
+more += You start to feel a little slower
+more += You flicker
+more += You feel less protected from missiles
+
+# Skill breakpoints
+more += Your Shields skill increases to level (5|15|25)
+more += Your Axes skill increases to level 20
+more += Your Evocations skill increases to level 5
+more += Your Invocations skill increases to level 6
+
+# Others
+more += Your scales start
+more += You feel monstrous
+more += zaps a wand
+more += is unaffected
+more += Jiyva alters your body
+
+# Uniques and baddies
+more += 27-headed.*comes? into view.
+
+# more conservative health warning
+hp_warning = 20
+
+#########
+# Notes #
+#########
+
+dump_item_origins = all
+dump_message_count = 50
+dump_book_spells = false
