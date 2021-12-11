@@ -111,10 +111,10 @@ profile_stop "scmpuff"
 #############################################################################
 # load homeshick for dotfile management
 #############################################################################
-profile_start "homeshick"
-HOMESHICK="$HOME/.homesick/repos/homeshick/homeshick.sh"
-[ -s "$HOMESHICK" ]  && source "$HOMESHICK"
-profile_stop "homeshick"
+# profile_start "homeshick"
+# HOMESHICK="$HOME/.homesick/repos/homeshick/homeshick.sh"
+# [ -s "$HOMESHICK" ]  && source "$HOMESHICK"
+# profile_stop "homeshick"
 
 #############################################################################
 # gcloud completions
@@ -134,9 +134,6 @@ profile_start "shell-env"
 
 # list dotfiles
 alias lsd='ls -od \.*'
-
-# homeshick as a pseudo command
-alias homesick=homeshick
 
 # my code todos
 alias td='rg TODO'
@@ -181,7 +178,7 @@ export PATH=.bundle/binstubs:$PATH
 export PYTHONDONTWRITEBYTECODE=1
 
 # set some convenience variables for things I can never remember where they are
-export DOTFILES="$HOME/.homesick/repos/dotfiles/home"
+export DOTFILES="$HOME/.local/share/chezmoi"
 export ICLOUD="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 
 # configure right prompt for git prompt useremail setup
