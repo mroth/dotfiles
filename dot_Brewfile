@@ -1,0 +1,121 @@
+# dotfiles
+brew "chezmoi"
+brew "antigen"
+
+# source code management
+brew "git"
+brew "gh"
+brew "scmpuff"
+brew "tokei"
+brew "git-sizer"
+brew "git-absorb"
+# brew "git-delta"
+brew "mroth/tap/bump"
+brew "mroth/tap/consider"
+
+# development: slice and dice
+brew "jq"
+brew "ripgrep"
+
+# development: golang tooling
+brew "go"
+brew "golangci-lint"
+brew "goreleaser"
+# TODO: 
+#   - go install golang.org/x/perf/cmd/benchstat@latest
+#   - go install github.com/ajstarks/svgo/benchviz@latest
+
+# development: protocol buffers / grpc
+brew "protobuf"
+brew "protoc-gen-go"
+brew "protoc-gen-go-grpc"
+
+# development: performance analysis
+brew "hyperfine"
+brew "pv"
+
+# development: shell scripts
+brew "shellcheck"
+brew "shfmt"
+
+# development: language grab-bag
+brew "ruby"
+brew "rust"
+brew "node"
+brew "ansible"
+
+# productivity: 
+brew "coreutils"
+brew "bat" # better cat
+brew "exa" # better ls
+
+# network tools
+brew "curl"
+brew "nmap"
+brew "wget"
+brew "speedtest-cli"
+brew "youtube-dl"
+
+# security: encryption and passwords
+brew "gnupg"
+brew "pdfcrack"
+brew "pwgen"
+brew "ykman"
+
+# casks: general
+cask "google-chrome"
+cask "discord"
+cask "zoom"
+cask "soulver"
+cask "tor-browser"
+
+# casks: password management
+cask "1password"    # needs post-install login
+cask "authy"        # needs post-install login
+
+# casks: development
+cask "visual-studio-code"
+cask "docker"       # needs post-install login
+cask "github"       # needs post-install login
+cask "gitup"
+cask "dash"         # needs post-install license activation
+# cask "fork"
+# cask "google-cloud-sdk"
+
+# casks: media encoding
+cask "handbrake"
+cask "imageoptim"
+cask "licecap"
+
+# casks: entertainment
+cask "spotify"
+cask "transmission"
+cask "vlc"
+cask "minecraft"
+# cask "steam"
+
+# casks: iffy
+# cask "vmware-fusion"
+# cask "imazing"
+# cask "cloudflare-warp"
+
+
+# app store
+brew "mas"
+mas "AwardWallet", id: 1473828829
+mas "Boxy SVG", id: 611658502
+mas "DaisyDisk", id: 411643860
+mas "HomePass", id: 1330266650
+mas "Ka-Block!", id: 1335413823
+mas "Keynote", id: 409183694
+# mas "LG Screen Manager", id: 1142051783
+mas "Parcel", id: 639968404
+mas "Petrify", id: 1451177988
+mas "PiPifier", id: 1160374471
+mas "Pixelmator", id: 407963104
+mas "Slack", id: 803453959
+mas "SmileAllDay", id: 1180442868
+mas "Speedtest", id: 1153157709
+mas "Twitter", id: 1482454543
+# mas "Xcode", id: 497799835
+
