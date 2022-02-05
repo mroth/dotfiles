@@ -89,8 +89,10 @@ cask "licecap"
 
 # casks: entertainment
 cask "spotify"
+# cask "sonos" #not yet Apple Silicon native grr
 cask "transmission"
 cask "vlc"
+cask "iina"
 cask "minecraft"
 # cask "steam"
 
