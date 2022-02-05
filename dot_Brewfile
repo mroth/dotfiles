@@ -67,7 +67,7 @@ cask "google-chrome"
 cask "discord"
 cask "zoom"
 cask "soulver"
-cask "tor-browser"
+# cask "tor-browser"
 
 # casks: password management
 cask "1password"    # needs post-install login
