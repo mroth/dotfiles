@@ -44,10 +44,11 @@ brew "rust"
 brew "node"
 brew "ansible"
 
-# productivity: 
+# productivity: cli
 brew "coreutils"
 brew "bat" # better cat
 brew "exa" # better ls
+brew "dust" # better du
 
 # network tools
 brew "curl"
