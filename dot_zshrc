@@ -37,19 +37,27 @@ profile_start ".zshrc"
 # $(/usr/bin/uname -m) averages only ~1ms, and is what the homebrew installer
 # uses to determine the default brew installation path, so we can replicate
 # that logic.
-profile_start "brew-prefix"
+profile_start "brew-shellenv"
 UNAME_MACHINE=$(/usr/bin/uname -m)
 if [[ "${UNAME_MACHINE}" == "arm64" ]]
 then
-  # On ARM macOS, default script installs to /opt/homebrew only
-  HOMEBREW_PREFIX="/opt/homebrew"
-  HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}"
+  # On ARM macOS, default script installs to /opt/homebrew
+  export HOMEBREW_PREFIX="/opt/homebrew";
+  export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+  export HOMEBREW_REPOSITORY="/opt/homebrew";
+  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+  export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+  export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 else
-  # On Intel macOS, default script installs to /usr/local only
-  HOMEBREW_PREFIX="/usr/local"
-  HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
+  # On Intel macOS, default script installs to /usr/local
+  export HOMEBREW_PREFIX="/usr/local";
+  export HOMEBREW_CELLAR="/usr/local/Cellar";
+  export HOMEBREW_REPOSITORY="/usr/local/Homebrew";
+  export PATH="/usr/local/bin:/usr/local/sbin${PATH+:$PATH}";
+  export MANPATH="/usr/local/share/man${MANPATH+:$MANPATH}:";
+  export INFOPATH="/usr/local/share/info:${INFOPATH:-}";
 fi
-profile_stop "brew-prefix"
+profile_stop "brew-shellenv"
 
 #############################################################################
 # HOMEBREW COMPLETIONS
