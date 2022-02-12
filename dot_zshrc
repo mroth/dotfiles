@@ -36,10 +36,10 @@ profile_start ".zshrc"
 #
 # $(/usr/bin/uname -m) averages only ~1ms, and is what the homebrew installer
 # uses to determine the default brew installation path, so we can replicate
-# that logic.
+# that logic.  I've now switched to `arch`, which is even faster at ~0.6ms.
 profile_start "brew-shellenv"
-UNAME_MACHINE=$(/usr/bin/uname -m)
-if [[ "${UNAME_MACHINE}" == "arm64" ]]
+ARCH=$(/usr/bin/arch)
+if [[ "${ARCH}" == "arm64" ]]
 then
   # On ARM macOS, default script installs to /opt/homebrew
   export HOMEBREW_PREFIX="/opt/homebrew";
