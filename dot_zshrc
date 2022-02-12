@@ -2,8 +2,15 @@
 # User shell configuration
 # As a reminder .zshrc is for stuff that modifies the INTERACTIVE shell only.
 
-# set up some very basic profiling of how long zshrc takes to load.
-# to test, use: ZSHRC_PROFILE=true zsh -ic "exit"
+#############################################################################
+# PROFILING FUNCTIONS 
+#############################################################################
+#
+# Sets up hacky profiling of how long portions of this zshrc takes to load.
+# To test, use: ZSHRC_PROFILE=true zsh -lic "exit"
+#
+# Note that this is not a good way to benchmark actual shell performance, for
+# that, see https://github.com/romkatv/zsh-bench for a better option.
 declare -A ZSHRC_LOAD_START=()
 declare -A ZSHRC_LOAD_STOP=()
 declare -A ZSHRC_LOAD_TIME=()
