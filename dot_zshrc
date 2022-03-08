@@ -31,6 +31,13 @@ function profile_stop () {
 
 profile_start ".zshrc"
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #############################################################################
 # HOMEBREW PREFIX
 #############################################################################
@@ -78,33 +85,40 @@ profile_stop "brew-shellenv"
 profile_start "brew-comp"
 if type brew &>/dev/null; then
   FPATH=${HOMEBREW_PREFIX}/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
 fi
 profile_stop "brew-comp"
 
 #############################################################################
 # ANTIGEN ZSH PLUGIN MANAGER
 #############################################################################
+# Note to self: Pretty much everything here is in homebrew now, so I could
+# get rid of antigen and use the brew versions instead of desired to not
+# have antigen.
 profile_start "antigen"
 antigenSrc="${HOMEBREW_PREFIX}/share/antigen/antigen.zsh"
 if [ -s "$antigenSrc" ]; then
   source $antigenSrc
 
   # OMZ plugins
-  antigen use oh-my-zsh
-  antigen bundle docker
-  antigen bundle docker-compose
-  antigen bundle golang
-  antigen bundle macos
+  # antigen use oh-my-zsh
+  # antigen bundle docker
+  # antigen bundle docker-compose
+  # antigen bundle golang
+  # antigen bundle macos
 
   # other plugins
-  #antigen bundle zsh-users/zsh-syntax-highlighting
   antigen bundle zdharma-continuum/fast-syntax-highlighting
+  antigen bundle zsh-users/zsh-autosuggestions
 
   # my awesomely neato personal plugins
   # antigen bundle mroth/evalcache
-  antigen bundle mroth/git-prompt-useremail
+  # antigen bundle mroth/git-prompt-useremail # TODO: not integrated into my p10k config yet
 
-  antigen theme blinks
+  # antigen theme blinks
+  antigen theme romkatv/powerlevel10k
   antigen apply
 fi
 profile_stop "antigen"
@@ -122,14 +136,6 @@ if hash scmpuff 2>/dev/null; then
 fi
 
 profile_stop "scmpuff"
-
-#############################################################################
-# load homeshick for dotfile management
-#############################################################################
-# profile_start "homeshick"
-# HOMESHICK="$HOME/.homesick/repos/homeshick/homeshick.sh"
-# [ -s "$HOMESHICK" ]  && source "$HOMESHICK"
-# profile_stop "homeshick"
 
 #############################################################################
 # gcloud completions
@@ -196,6 +202,12 @@ export PYTHONDONTWRITEBYTECODE=1
 export DOTFILES="$HOME/.local/share/chezmoi"
 export ICLOUD="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 
+profile_stop "shell-env"
+
+profile_start "prompt"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # configure right prompt for git prompt useremail setup
 export RPROMPT='$(git_prompt_useremail_symbol) '
 
@@ -204,8 +216,9 @@ if [ "$TERM_PROGRAM" = "vscode" ]; then
   export PROMPT="$ "
   export RPROMPT=""
 fi
-
-profile_stop "shell-env"
+profile_stop "prompt"
 
 profile_stop ".zshrc"
 unfunction profile_start profile_stop
+
+
