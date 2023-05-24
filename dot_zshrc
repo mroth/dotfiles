@@ -171,6 +171,9 @@ alias be='bundle exec'
 # since I'm noncommital just alias instead of polluting $PATH or symlinking
 alias airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
 
+# shorthand when starting a new go personal project
+alias gmi='go mod init github.com/${USER}/$(basename `pwd`)'
+
 ### shell environment ###
 
 # global environment settings/variables
