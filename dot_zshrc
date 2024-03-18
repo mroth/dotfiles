@@ -185,6 +185,10 @@ export GIT_EDITOR='vim'
 export HOMEBREW_EDITOR='vim'
 export CLICOLOR=1
 
+# ZSH plugin configuration
+# set autosuggestions to only use completion strategy, not history
+export ZSH_AUTOSUGGEST_STRATEGY=(completion)
+
 # set default GOPATH, add `go install` bin directory to default path (but make
 # it last so /usr/local et al take precedence), and set a convenience env var
 # to make it less annoying to navigate to my old GOPATH code src.
