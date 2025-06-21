@@ -1,12 +1,15 @@
 [user]
 	name = Matthew Rothenberg
-	email = mrothenberg@gmail.com
+	email = mroth@mroth.xyz
 
 [github]
 	user = mroth
 
 [core]
 	excludesfile = ~/.gitignore
+
+[init]
+	defaultBranch = main
 
 [color]
 	ui = true
@@ -34,13 +37,13 @@
 [credential]
 	helper = osxkeychain
 
+[http]
+    cookiefile = ~/.gitcookies
+
 [alias]
 	amend = commit --amend -C HEAD
 	smash = rebase --autosquash --committer-date-is-author-date
 	log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
-[init]
-	defaultBranch = main
 
 
 # GitHub for Mac insists on adding these whenever it launches, so let's check it
