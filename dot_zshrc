@@ -3,7 +3,7 @@
 # As a reminder .zshrc is for stuff that modifies the INTERACTIVE shell only.
 
 #############################################################################
-# PROFILING FUNCTIONS 
+# PROFILING FUNCTIONS
 #############################################################################
 #
 # Sets up hacky profiling of how long portions of this zshrc takes to load.
@@ -43,7 +43,7 @@ fi
 #############################################################################
 #
 # Some of the paths sourced here are based upon knowing the HOMEBREW_PREFIX.
-# Invoking $(brew --prefix) takes about ~25ms on average, so previously I 
+# Invoking $(brew --prefix) takes about ~25ms on average, so previously I
 # hardcoded this value, assuming it would always be in the standard location.
 # However, the standard location now differs based on whether the mac is on
 # x86_64 or arm64 architecture.
@@ -79,7 +79,7 @@ profile_stop "brew-shellenv"
 #
 # This must occur prior to compinit being invoked, which OMZ does automatically
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-# 
+#
 # Originally `FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH`,
 # but brew prefix path hardcoded to avoid extra shellcall invocation (saves 20+ms!)
 profile_start "brew-comp"
@@ -233,5 +233,3 @@ profile_stop "prompt"
 
 profile_stop ".zshrc"
 unfunction profile_start profile_stop
-
-
