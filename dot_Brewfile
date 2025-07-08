@@ -68,7 +68,6 @@ cask "google-chrome"
 cask "discord"
 cask "zoom"
 cask "soulver"
-# cask "tor-browser"
 
 # casks: password management
 cask "1password"    # needs post-install login
@@ -80,7 +79,6 @@ cask "docker"       # needs post-install login
 cask "github"       # needs post-install login
 cask "gitup"
 cask "dash"         # needs post-install license activation
-# cask "fork"
 # cask "google-cloud-sdk"
 
 # casks: media encoding
@@ -95,13 +93,6 @@ cask "transmission"
 cask "vlc"
 cask "iina"
 cask "minecraft"
-# cask "steam"
-
-# casks: iffy
-# cask "vmware-fusion"
-# cask "imazing"
-# cask "cloudflare-warp"
-
 
 # app store
 brew "mas"
@@ -111,7 +102,6 @@ mas "DaisyDisk", id: 411643860
 mas "HomePass", id: 1330266650
 mas "Ka-Block!", id: 1335413823
 mas "Keynote", id: 409183694
-# mas "LG Screen Manager", id: 1142051783
 mas "Parcel", id: 639968404
 mas "Petrify", id: 1451177988
 mas "PiPifier", id: 1160374471
