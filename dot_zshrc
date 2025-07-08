@@ -203,7 +203,6 @@ export ZSH_AUTOSUGGEST_STRATEGY=(completion)
 # to make it less annoying to navigate to my old GOPATH code src.
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export GOCODE=$GOPATH/src/github.com/mroth
 
 # and now rust wants to have its own path as well (kinda, way less annoying tho)
 export PATH="$HOME/.cargo/bin:$PATH"
