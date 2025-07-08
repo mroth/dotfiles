@@ -178,6 +178,7 @@ alias tailscale="/Applications/Tailscale.app/Contents/MacOS/tailscale"
 alias gmi='go mod init github.com/${USER}/$(basename `pwd`)'
 
 # handy for go fuzzing on efficiency cores only
+# Deprecated: prefer github.com/mroth/go-bgtest instead.
 alias bgtest='GOMAXPROCS=`sysctl -n hw.perflevel1.logicalcpu` taskpolicy -b go test'
 
 ### shell environment ###
