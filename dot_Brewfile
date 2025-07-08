@@ -55,7 +55,7 @@ brew "curl"
 brew "nmap"
 brew "wget"
 brew "speedtest-cli"
-brew "youtube-dl"
+brew "yt-dlp"
 
 # security: encryption and passwords
 brew "gnupg"
