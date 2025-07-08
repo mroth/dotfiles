@@ -128,9 +128,7 @@ profile_stop "antigen"
 #############################################################################
 profile_start "scmpuff"
 # scmpuff init is so fast now there is marginal returns from using evalcache,
-# so disable for less complexity.
-# _evalcache scmpuff init -s
-
+# so use the init directly for less complexity.
 if hash scmpuff 2>/dev/null; then
   eval "$(scmpuff init -s)"
 fi
@@ -160,11 +158,13 @@ alias lsd='ls -od \.*'
 alias td='rg TODO'
 
 # for obsessive version checking
-alias brewsup='brew update && brew outdated'
-alias brewup='brew upgrade && brew cleanup'
+# Deprecated: trying to disable for a bit to see if I can retrain my muscle memory.
+# alias brewsup='brew update && brew outdated'
+# alias brewup='brew upgrade && brew cleanup'
 
-# since you have to type it so much
-alias be='bundle exec'
+# Ruby: since you have to type it so much
+# Deprecated: disabling for now since I don't work with Ruby on a daily basis.
+# alias be='bundle exec'
 
 # darwin specific
 # add hidden airport CLI command
