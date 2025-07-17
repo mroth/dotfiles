@@ -45,7 +45,7 @@ brew "ansible"
 # productivity: cli
 brew "coreutils"
 brew "bat" # better cat
-brew "exa" # better ls
+brew "eza" # better ls
 brew "dust" # better du
 
 # network tools
