@@ -48,7 +48,8 @@
 	amend = commit --amend -C HEAD
 	smash = rebase --autosquash --committer-date-is-author-date
 	log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
+	dshow = -c diff.external=difft show --ext-diff
+    ddiff = -c diff.external=difft diff
 
 # GitHub for Mac insists on adding these whenever it launches, so let's check it
 # in a way that we at least knows where it comes from.
