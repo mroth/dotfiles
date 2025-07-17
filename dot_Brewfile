@@ -16,6 +16,7 @@ brew "mroth/tap/consider"
 # development: slice and dice
 brew "jq"
 brew "ripgrep"
+brew "helix"
 
 # development: golang tooling
 brew "go"
@@ -73,6 +74,7 @@ cask "authy"        # needs post-install login
 
 # casks: development
 cask "visual-studio-code"
+cask "zed"
 cask "docker"       # needs post-install login
 cask "github"       # needs post-install login
 cask "gitup"
