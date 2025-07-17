@@ -38,7 +38,6 @@ brew "shellcheck"
 brew "shfmt"
 
 # development: language grab-bag
-brew "ruby"
 brew "rust"
 brew "node"
 brew "ansible"
