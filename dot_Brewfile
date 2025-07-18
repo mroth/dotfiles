@@ -22,9 +22,6 @@ brew "helix"
 brew "go"
 brew "golangci-lint"
 brew "goreleaser"
-# TODO:
-#   - go install golang.org/x/perf/cmd/benchstat@latest
-#   - go install github.com/ajstarks/svgo/benchviz@latest
 
 # development: protocol buffers / grpc
 brew "buf"
