@@ -1,0 +1,7 @@
+{
+  "file_types": {
+    "Git Config": ["dot_gitconfig"],
+    "Git Ignore": ["dot_gitignore"],
+    "Shell Script": ["dot_zsh*", "dot_bash*"]
+  }
+}

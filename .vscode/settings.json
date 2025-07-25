@@ -1,0 +1,12 @@
+{
+  "files.associations": {
+    ".chezmoiignore": "ignore",
+    "dot_bash_profile": "shellscript",
+    "dot_Brewfile": "ruby",
+    "dot_gemrc": "ruby",
+    "dot_gitconfig": "properties",
+    "dot_gitignore": "ignore",
+    "dot_vimrc": "python",
+    "dot_zshrc": "shellscript"
+  }
+}
