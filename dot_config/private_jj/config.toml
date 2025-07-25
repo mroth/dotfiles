@@ -1,0 +1,48 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Matthew Rothenberg"
+email = "mroth@mroth.xyz"
+
+[signing]
+behavior = "own"
+backend = "ssh"
+key = "~/.ssh/id_ed25519.pub"
+
+# [git]
+# for efficiency, only sign commits when they are pushed
+# sign-on-push = true
+
+[ui]
+default-command = "log"
+editor = "vim"
+
+[aliases]
+# difft is diff using difftastic (as a one-off)
+difft = ["diff", "--tool", "difft"]
+# tug moves bookmarks that are ancestors of @- to be at @-
+# cf. https://shaddy.dev/notes/jj-tug/
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+
+[templates]
+# custom git branchname template for push changes without bookmark name
+git_push_bookmark = '"mroth/push-" ++ change_id.short()'
+
+# Change default immutable heads to avoid rewriting commits from other authors.
+# The `trunk().. &` bit is an optimization to scan for non-`mine()` commits
+# only among commits that are not in `trunk()`.
+# [revset-aliases]
+# "immutable_heads()" = "builtin_immutable_heads() | (trunk().. & ~mine())"
+
+# sample for a jj fix tool
+# enable on a repo via jj config --repo fix.tools.gofmt.enabled true
+[fix.tools.gofmt]
+command = ["gofmt", "-s"]
+patterns = ["root-glob:'**/*.go' ~ root:'vendor'"]
+enabled = false
+
+# overrides for specific organizations
+[[--scope]]
+--when.repositories = ["~/src/protocol"]
+[--scope.user]
+email = "mroth@protocol.ai"
