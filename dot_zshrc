@@ -126,18 +126,6 @@ fi
 profile_stop "antigen"
 
 #############################################################################
-# scmpuff to enhance git further
-#############################################################################
-profile_start "scmpuff"
-# scmpuff init is so fast now there is marginal returns from using evalcache,
-# so use the init directly for less complexity.
-if hash scmpuff 2>/dev/null; then
-  eval "$(scmpuff init -s)"
-fi
-
-profile_stop "scmpuff"
-
-#############################################################################
 # gcloud completions
 #############################################################################
 # profile_start "gcloud"
@@ -223,6 +211,18 @@ export DOTFILES="$HOME/.local/share/chezmoi"
 export ICLOUD="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 
 profile_stop "shell-env"
+
+#############################################################################
+# scmpuff to enhance git further
+#############################################################################
+profile_start "scmpuff"
+# scmpuff init is so fast now there is marginal returns from using evalcache,
+# so use the init directly for less complexity.
+if hash scmpuff 2>/dev/null; then
+  eval "$(scmpuff init -s)"
+fi
+
+profile_stop "scmpuff"
 
 profile_start "prompt"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
