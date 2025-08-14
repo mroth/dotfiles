@@ -73,10 +73,10 @@ cask "visual-studio-code"
 cask "zed"
 cask "docker"       # needs post-install login
 cask "github"       # needs post-install login
-cask "gitup"
+cask "gitup-app"
 
 # casks: media encoding
-cask "handbrake"
+cask "handbrake-app"
 cask "imageoptim"
 cask "licecap"
 
