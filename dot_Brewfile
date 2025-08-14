@@ -55,7 +55,6 @@ brew "yt-dlp"
 
 # security: encryption and passwords
 brew "gnupg"
-brew "pdfcrack"
 brew "pwgen"
 brew "ykman"
 
@@ -75,8 +74,6 @@ cask "zed"
 cask "docker"       # needs post-install login
 cask "github"       # needs post-install login
 cask "gitup"
-cask "dash"         # needs post-install license activation
-# cask "google-cloud-sdk"
 
 # casks: media encoding
 cask "handbrake"
@@ -89,18 +86,15 @@ cask "spotify"
 cask "transmission"
 cask "vlc"
 cask "iina"
-cask "minecraft"
 
 # app store
 # prefer app store over brew casks despite bad ergonomics,
 # as sandboxing is enforced.
 brew "mas"
-mas "AwardWallet", id: 1473828829
 mas "Boxy SVG", id: 611658502
 mas "DaisyDisk", id: 411643860
 mas "HomePass", id: 1330266650
 mas "Infuse", id: 1136220934
-mas "Ka-Block!", id: 1335413823
 mas "Keynote", id: 409183694
 mas "Parcel", id: 639968404
 mas "Petrify", id: 1451177988
