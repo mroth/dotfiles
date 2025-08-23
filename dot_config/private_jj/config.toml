@@ -46,3 +46,8 @@ enabled = false
 --when.repositories = ["~/src/protocol"]
 [--scope.user]
 email = "mroth@protocol.ai"
+
+[[--scope]]
+--when.repositories = ["~/src/dojo"]
+[--scope.user]
+email = "mroth@dojo.com"
