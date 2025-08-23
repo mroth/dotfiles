@@ -90,8 +90,8 @@
 # include org specific directives based on location.
 # https://git-scm.com/docs/git-config#_conditional_includes
 
-[includeIf "gitdir:~/src/openlaw/"]
-	path = ~/src/openlaw/.gitconfig.inc
-
 [includeIf "gitdir:~/src/protocol/"]
 	path = ~/src/protocol/.gitconfig.inc
+
+[includeIf "gitdir:~/src/dojo/"]
+    path = ~/src/dojo/.gitconfig.inc
