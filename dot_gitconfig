@@ -64,28 +64,28 @@
 	process = git-lfs filter-process
 	required = true
 
-# git-prompt-useremail settings.
-# see https://github.com/mroth/git-prompt-useremail
-[emailprompt "mrothenberg@gmail.com"]
-	prompt = 👀
-[emailprompt "mroth@users.noreply.github.com"]
-	prompt = 👤
-[emailprompt "mroth@rocket.ws"]
-	prompt = 🚀
-[emailprompt "mroth@flickr.com"]
-	prompt = 🌈🐼
-[emailprompt "mroth@bitly.com"]
-	prompt = 🐡
-[emailprompt "mroth@khanacademy.org"]
-	prompt = 🌱
-[emailprompt "mroth@consensys.net"]
-	prompt = 🌀
-[emailprompt "mroth@openlaw.io"]
-	prompt = ⚖️
-[emailprompt "mrothenberg@stripe.com"]
-	prompt = 🦀
-[emailprompt "mroth@protocol.ai"]
-	prompt = 🪐
+# git-sigil settings
+# wip: https://github.com/mroth/git-sigil
+# (previously: https://github.com/mroth/git-prompt-useremail)
+[sigil.email "mroth@users.noreply.github.com"]
+    symbol = 🫥
+[sigil.email "mroth@mroth.xyz"]
+    symbol = 🫆
+[sigil.email "mroth@rocket.ws"]
+    symbol = 🚀
+[sigil.email "mroth@protocol.ai"]
+    symbol = 🪐
+[sigil.email "mroth@flickr.com"]
+    symbol = 🌈🐼
+[sigil.email "mroth@bitly.com"]
+    symbol = 🐡
+[sigil.email "mroth@dojo.com"]
+    symbol = 🐲
+[sigil.email "@stripe.com"]
+    symbol = 🏦
+[sigil.email "@gmail.com"]
+    symbol = 📧
+
 
 # include org specific directives based on location.
 # https://git-scm.com/docs/git-config#_conditional_includes
