@@ -23,6 +23,13 @@ brew "go"
 brew "golangci-lint"
 brew "goreleaser"
 
+# development: go modules
+go "golang.org/x/perf/cmd/benchstat"
+go "github.com/ajstarks/svgo/benchviz"
+go "golang.org/x/tools/cmd/deadcode"
+go "github.com/Gelio/go-global-update"
+go "github.com/mroth/go-bgtest"
+
 # development: protocol buffers / grpc
 brew "buf"
 brew "protobuf"
