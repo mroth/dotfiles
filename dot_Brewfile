@@ -22,8 +22,6 @@ brew "helix"
 brew "go"
 brew "golangci-lint"
 brew "goreleaser"
-
-# development: go modules
 go "golang.org/x/perf/cmd/benchstat"
 go "github.com/ajstarks/svgo/benchviz"
 go "golang.org/x/tools/cmd/deadcode"
