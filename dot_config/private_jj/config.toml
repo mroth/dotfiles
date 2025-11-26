@@ -15,7 +15,7 @@ key = "~/.ssh/id_ed25519.pub"
 
 [ui]
 default-command = "log"
-editor = "vim"
+editor = "hx"
 
 [aliases]
 # difft is diff using difftastic (as a one-off)
