@@ -28,6 +28,11 @@ tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 # custom git branchname template for push changes without bookmark name
 git_push_bookmark = '"mroth/push-" ++ change_id.short()'
 
+# automatically track bookmarks that match my personal prefix pattern (jj 0.36+)
+# https://github.com/jj-vcs/jj/blob/v0.36.0/docs/config.md#automatic-tracking-of-bookmarks
+[remotes.origin]
+auto-track-bookmarks = "glob:mroth/*"
+
 # Change default immutable heads to avoid rewriting commits from other authors.
 # The `trunk().. &` bit is an optimization to scan for non-`mine()` commits
 # only among commits that are not in `trunk()`.
