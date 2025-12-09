@@ -5,6 +5,7 @@ brew "antigen"
 # source code management
 brew "git"
 brew "gh"
+brew "jj"
 brew "scmpuff"
 brew "tokei"
 brew "git-sizer"
