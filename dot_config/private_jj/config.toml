@@ -19,9 +19,18 @@ difft = ["diff", "--tool", "difft"]
 # tug moves bookmarks that are ancestors of @- to be at @-
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 
+[revset-aliases]
+# Change default immutable heads to avoid rewriting commits from other authors.
+# The `trunk().. &` bit is an optimization to scan for non-`mine()` commits
+# only among commits that are not in `trunk()`.
+"immutable_heads()" = "builtin_immutable_heads() | (trunk().. & ~mine())"
+# Private and WIP commits that should never be pushed anywhere.
+"wip()" = 'description(glob-i:"wip:*")'
+"private()" = 'description(glob-i:"private:*")'
+
 [git]
 # Prevent pushing work in progress or anything explicitly labeled "private"
-private-commits = "description(glob:'WIP:*') | description(glob:'wip:*') | description(glob:'private:*')"
+private-commits = "wip() | private()"
 # for efficiency, only sign commits when they are pushed (disabled, keeping for reference)
 # sign-on-push = true
 
@@ -34,11 +43,25 @@ auto-track-bookmarks = "glob:mroth/*"
 # custom git branchname template for push changes without bookmark name
 git_push_bookmark = '"mroth/push-" ++ change_id.short()'
 
-# Change default immutable heads to avoid rewriting commits from other authors.
-# The `trunk().. &` bit is an optimization to scan for non-`mine()` commits
-# only among commits that are not in `trunk()`.
-[revset-aliases]
-"immutable_heads()" = "builtin_immutable_heads() | (trunk().. & ~mine())"
+# custom node symbols in the log graph.
+# TODO: I need to think this through a bit more, preserving for thoughts.
+#
+# ○ = normal node (unmodified)
+# ◌ =
+# ◇ = WIP/private change (will never be pushed)
+# log_node = '''
+# coalesce(
+#     if(self && is_wip(self), "◇"),
+#     if(self && !current_working_copy && !immutable && !conflict && in_branch(self),
+#         "◌",
+#         builtin_log_node
+#     )
+# )
+# '''
+#
+# [template-aliases]
+# "is_wip(commit)" = 'commit.contained_in("wip()")'
+# "in_branch(commit)" = 'commit.contained_in("immutable_heads()..bookmarks()")'
 
 # sample for a jj fix tool
 # enable on a repo via jj config --repo fix.tools.gofmt.enabled true
