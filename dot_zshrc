@@ -169,12 +169,9 @@ alias gmi='go mod init github.com/${USER}/$(basename `pwd`)'
 
 # handy for go fuzzing on efficiency cores only
 # Deprecated: prefer github.com/mroth/go-bgtest instead.
-alias bgtest='GOMAXPROCS=`sysctl -n hw.perflevel1.logicalcpu` taskpolicy -b go test'
 
 # Go: apply modernize fixes en masse
-# (Do not use "go get -tool" to add gopls as a dependency of your module; gopls commands must be built from their release branch.)
-# cf. https://pkg.go.dev/golang.org/x/tools/gopls/internal/analysis/modernize
-alias modernize='go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -fix -test ./...'
+# Deprecated: built-in via `go fix` since go1.26
 
 ### shell environment ###
 
@@ -227,15 +224,6 @@ profile_stop "scmpuff"
 profile_start "prompt"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# configure right prompt for git prompt useremail setup
-export RPROMPT='$(git_prompt_useremail_symbol) '
-
-# Minimal prompt override if in VSCODE integrated terminal
-if [ "$TERM_PROGRAM" = "vscode" ]; then
-  export PROMPT="$ "
-  export RPROMPT=""
-fi
 profile_stop "prompt"
 
 profile_stop ".zshrc"
