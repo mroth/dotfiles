@@ -3,33 +3,20 @@
 # As a reminder .zshrc is for stuff that modifies the INTERACTIVE shell only.
 
 #############################################################################
-# PROFILING FUNCTIONS
+# PROFILING
 #############################################################################
+# To profile zshrc load times: ZSHRC_PROFILE=true zsh -lic "exit"
 #
-# Sets up hacky profiling of how long portions of this zshrc takes to load.
-# To test, use: ZSHRC_PROFILE=true zsh -lic "exit"
+# Uses zsh/datetime's $EPOCHREALTIME for sub-ms timing with no external
+# dependencies. Each setup section is a function; the run loop below
+# automatically wraps each call with timing when profiling is enabled.
 #
 # Note that this is not a good way to benchmark actual shell performance, for
 # that, see https://github.com/romkatv/zsh-bench for a better option.
-declare -A ZSHRC_LOAD_START=()
-declare -A ZSHRC_LOAD_STOP=()
-declare -A ZSHRC_LOAD_TIME=()
-
-function profile_start () {
-  if [[ "$ZSHRC_PROFILE" = true ]]; then
-    ZSHRC_LOAD_START[$1]=$(gdate "+%s%3N")
-  fi
-}
-
-function profile_stop () {
-  if [[ "$ZSHRC_PROFILE" = true ]]; then
-    ZSHRC_LOAD_STOP[$1]=$(gdate "+%s%3N")
-    ZSHRC_LOAD_TIME[$1]=$(echo "$ZSHRC_LOAD_STOP[$1] - $ZSHRC_LOAD_START[$1]" | bc)
-    printf "\033[1m%12s\033[0m loaded in:\t%4dms\n" $1 $ZSHRC_LOAD_TIME[$1]
-  fi
-}
-
-profile_start ".zshrc"
+if [[ "$ZSHRC_PROFILE" = true ]]; then
+  zmodload zsh/datetime
+  declare -A _profile_times=()
+fi
 
 #############################################################################
 # HOMEBREW PREFIX
@@ -44,29 +31,29 @@ profile_start ".zshrc"
 # $(/usr/bin/uname -m) averages only ~1ms, and is what the homebrew installer
 # uses to determine the default brew installation path, so we can replicate
 # that logic.  I've now switched to `arch`, which is even faster at ~0.6ms.
-profile_start "brew-shellenv"
-ARCH=$(/usr/bin/arch)
-if [[ "${ARCH}" == "arm64" ]]
-then
-  # On ARM macOS, default script installs to /opt/homebrew
-  export HOMEBREW_PREFIX="/opt/homebrew";
-  export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-  export HOMEBREW_REPOSITORY="/opt/homebrew";
-  fpath[1,0]="/opt/homebrew/share/zsh/site-functions";
-  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
-  [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
-  export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
-else
-  # On Intel macOS, default script installs to /usr/local
-  export HOMEBREW_PREFIX="/usr/local";
-  export HOMEBREW_CELLAR="/usr/local/Cellar";
-  export HOMEBREW_REPOSITORY="/usr/local/Homebrew";
-  fpath[1,0]="/usr/local/share/zsh/site-functions";
-  export PATH="/usr/local/bin:/usr/local/sbin${PATH+:$PATH}";
-  [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
-  export INFOPATH="/usr/local/share/info:${INFOPATH:-}";
-fi
-profile_stop "brew-shellenv"
+function setup_brew_env() {
+  ARCH=$(/usr/bin/arch)
+  if [[ "${ARCH}" == "arm64" ]]
+  then
+    # On ARM macOS, default script installs to /opt/homebrew
+    export HOMEBREW_PREFIX="/opt/homebrew";
+    export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+    export HOMEBREW_REPOSITORY="/opt/homebrew";
+    fpath[1,0]="/opt/homebrew/share/zsh/site-functions";
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+    [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
+    export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+  else
+    # On Intel macOS, default script installs to /usr/local
+    export HOMEBREW_PREFIX="/usr/local";
+    export HOMEBREW_CELLAR="/usr/local/Cellar";
+    export HOMEBREW_REPOSITORY="/usr/local/Homebrew";
+    fpath[1,0]="/usr/local/share/zsh/site-functions";
+    export PATH="/usr/local/bin:/usr/local/sbin${PATH+:$PATH}";
+    [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
+    export INFOPATH="/usr/local/share/info:${INFOPATH:-}";
+  fi
+}
 
 #############################################################################
 # HOMEBREW COMPLETIONS
@@ -77,142 +64,159 @@ profile_stop "brew-shellenv"
 #
 # Originally `FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH`,
 # but brew prefix path hardcoded to avoid extra shellcall invocation (saves 20+ms!)
-profile_start "brew-comp"
-if type brew &>/dev/null; then
-  FPATH=${HOMEBREW_PREFIX}/share/zsh/site-functions:$FPATH
-
-  autoload -Uz compinit
-  compinit
-fi
-profile_stop "brew-comp"
+function setup_completions() {
+  if type brew &>/dev/null; then
+    FPATH=${HOMEBREW_PREFIX}/share/zsh/site-functions:$FPATH
+    autoload -Uz compinit
+    compinit
+  fi
+}
 
 #############################################################################
 # ZSH PLUGINS (installed via homebrew)
 #############################################################################
-profile_start "zsh-plugins"
-zsh_plugin_src=(
-  "${HOMEBREW_PREFIX}/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
-  "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-)
-for src in "${zsh_plugin_src[@]}"; do
-  if [[ -f "$src" ]]; then
-    source "$src"
-  fi
-done
-profile_stop "zsh-plugins"
-
-#############################################################################
-# gcloud completions
-#############################################################################
-# profile_start "gcloud"
-# GCLOUD="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
-# [ -s "$GCLOUD/path.zsh.inc" ]       && source "$GCLOUD/path.zsh.inc"
-# [ -s "$GCLOUD/completion.zsh.inc" ] && source "$GCLOUD/completion.zsh.inc"
-# profile_stop "gcloud"
+function setup_zsh_plugins() {
+  local zsh_plugin_src=(
+    "${HOMEBREW_PREFIX}/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+    "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  )
+  for src in "${zsh_plugin_src[@]}"; do
+    if [[ -f "$src" ]]; then
+      source "$src"
+    fi
+  done
+}
 
 #############################################################################
 # SHELL ENVIRONMENT
 #############################################################################
-profile_start "shell-env"
+function setup_shell_env() {
+  ### shell aliases ###
 
-### shell aliases ###
+  # list dotfiles
+  alias lsd='ls -od \.*'
 
-# list dotfiles
-alias lsd='ls -od \.*'
+  # my code todos
+  alias td='rg TODO'
 
-# my code todos
-alias td='rg TODO'
+  # for obsessive version checking
+  # Deprecated: trying to disable for a bit to see if I can retrain my muscle memory.
+  # alias brewsup='brew update && brew outdated'
+  # alias brewup='brew upgrade && brew cleanup'
 
-# for obsessive version checking
-# Deprecated: trying to disable for a bit to see if I can retrain my muscle memory.
-# alias brewsup='brew update && brew outdated'
-# alias brewup='brew upgrade && brew cleanup'
+  # Ruby: since you have to type it so much
+  # Deprecated: disabling for now since I don't work with Ruby on a daily basis.
+  # alias be='bundle exec'
 
-# Ruby: since you have to type it so much
-# Deprecated: disabling for now since I don't work with Ruby on a daily basis.
-# alias be='bundle exec'
+  # darwin specific
+  # add hidden airport CLI command
+  # since I'm noncommital just alias instead of polluting $PATH or symlinking
+  alias airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
 
-# darwin specific
-# add hidden airport CLI command
-# since I'm noncommital just alias instead of polluting $PATH or symlinking
-alias airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
+  # same but for tailscale binary cli access
+  alias tailscale="/Applications/Tailscale.app/Contents/MacOS/tailscale"
 
-# same but for tailscale binary cli access
-alias tailscale="/Applications/Tailscale.app/Contents/MacOS/tailscale"
+  # shorthand when starting a new go personal project
+  alias gmi='go mod init github.com/${USER}/$(basename `pwd`)'
 
-# shorthand when starting a new go personal project
-alias gmi='go mod init github.com/${USER}/$(basename `pwd`)'
+  # handy for go fuzzing on efficiency cores only
+  # Deprecated: prefer github.com/mroth/go-bgtest instead.
 
-# handy for go fuzzing on efficiency cores only
-# Deprecated: prefer github.com/mroth/go-bgtest instead.
+  # Go: apply modernize fixes en masse
+  # Deprecated: built-in via `go fix` since go1.26
 
-# Go: apply modernize fixes en masse
-# Deprecated: built-in via `go fix` since go1.26
+  ### shell environment ###
 
-### shell environment ###
+  # global environment settings/variables
+  export EDITOR='vim'
+  export GIT_EDITOR='vim'
+  export HOMEBREW_EDITOR='vim'
+  export CLICOLOR=1
 
-# global environment settings/variables
-export EDITOR='vim'
-export GIT_EDITOR='vim'
-export HOMEBREW_EDITOR='vim'
-export CLICOLOR=1
+  # ZSH plugin configuration
+  # set autosuggestions to only use completion strategy, not history
+  export ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
-# ZSH plugin configuration
-# set autosuggestions to only use completion strategy, not history
-export ZSH_AUTOSUGGEST_STRATEGY=(completion)
+  # set default GOPATH, add `go install` bin directory to default path (but make
+  # it last so /usr/local et al take precedence), and set a convenience env var
+  # to make it less annoying to navigate to my old GOPATH code src.
+  export GOPATH=$HOME/go
+  export PATH=$PATH:$GOPATH/bin
 
-# set default GOPATH, add `go install` bin directory to default path (but make
-# it last so /usr/local et al take precedence), and set a convenience env var
-# to make it less annoying to navigate to my old GOPATH code src.
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+  # and now rust wants to have its own path as well (kinda, way less annoying tho)
+  export PATH="$HOME/.cargo/bin:$PATH"
 
-# and now rust wants to have its own path as well (kinda, way less annoying tho)
-export PATH="$HOME/.cargo/bin:$PATH"
+  # lolcommits related prefs
+  export LOLCOMMITS_DELAY=1
 
-# lolcommits related prefs
-export LOLCOMMITS_DELAY=1
+  # Bundler: add local repo binstubs to default path
+  export PATH=.bundle/binstubs:$PATH
 
-# Bundler: add local repo binstubs to default path
-export PATH=.bundle/binstubs:$PATH
+  # Python, you make a big mess with your *.pyc bullshit.
+  export PYTHONDONTWRITEBYTECODE=1
 
-# Python, you make a big mess with your *.pyc bullshit.
-export PYTHONDONTWRITEBYTECODE=1
-
-# set some convenience variables for things I can never remember where they are
-export DOTFILES="$HOME/.local/share/chezmoi"
-export ICLOUD="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
-
-profile_stop "shell-env"
+  # set some convenience variables for things I can never remember where they are
+  export DOTFILES="$HOME/.local/share/chezmoi"
+  export ICLOUD="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+}
 
 #############################################################################
 # scmpuff to enhance git further
 #############################################################################
-profile_start "scmpuff"
 # scmpuff init is so fast now there is marginal returns from using evalcache,
 # so use the init directly for less complexity.
-if hash scmpuff 2>/dev/null; then
-  eval "$(scmpuff init -s)"
-fi
-
-profile_stop "scmpuff"
-
+function setup_scmpuff() {
+  if hash scmpuff 2>/dev/null; then
+    eval "$(scmpuff init -s)"
+  fi
+}
 
 #############################################################################
 # PROMPT SETUP (currently managed via oh-my-posh)
 #############################################################################
-profile_start "prompt"
-OMP_CONFIG="$HOME/.config/oh-my-posh/config.toml"
-if hash oh-my-posh 2>/dev/null; then
-  if [[ -f "$OMP_CONFIG" ]]; then
-    eval "$(oh-my-posh init zsh --config "$OMP_CONFIG")"
-  else
-    echo "[warning] oh-my-posh config not found at $OMP_CONFIG"
+function setup_prompt() {
+  local OMP_CONFIG="$HOME/.config/oh-my-posh/config.toml"
+  if ! hash oh-my-posh 2>/dev/null; then
+    echo "[warning] oh-my-posh not found, using default prompt"
+    return
   fi
-else
-  echo "[warning] oh-my-posh not found, using default prompt"
-fi
-profile_stop "prompt"
+  if [[ ! -f "$OMP_CONFIG" ]]; then
+    echo "[warning] oh-my-posh config not found at $OMP_CONFIG"
+    return
+  fi
+  eval "$(oh-my-posh init zsh --config "$OMP_CONFIG")"
+}
 
-profile_stop ".zshrc"
-unfunction profile_start profile_stop
+#############################################################################
+# RUN SETUP
+#############################################################################
+local -a setup_fns=(
+  setup_brew_env
+  setup_completions
+  setup_zsh_plugins
+  setup_shell_env
+  setup_scmpuff
+  setup_prompt
+)
+
+for fn in "${setup_fns[@]}"; do
+  if [[ "$ZSHRC_PROFILE" = true ]]; then
+    local _t0=$EPOCHREALTIME
+    $fn
+    local _t1=$EPOCHREALTIME
+    _profile_times[$fn]=$(( ($_t1 - $_t0) * 1000 ))
+  else
+    $fn
+  fi
+done
+
+#############################################################################
+# PROFILING OUTPUT
+#############################################################################
+if [[ "$ZSHRC_PROFILE" = true ]]; then
+  printf "\n\033[1m%-25s %8s\033[0m\n" "section" "time"
+  printf "%-25s %8s\n" "-------------------------" "--------"
+  for fn in "${setup_fns[@]}"; do
+    printf "%-25s %7.1fms\n" "$fn" "$_profile_times[$fn]"
+  done
+fi
