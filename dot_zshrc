@@ -13,7 +13,7 @@
 #
 # Note that this is not a good way to benchmark actual shell performance, for
 # that, see https://github.com/romkatv/zsh-bench for a better option.
-if [[ "$ZSHRC_PROFILE" = true ]]; then
+if [[ $ZSHRC_PROFILE == true ]]; then
   zmodload zsh/datetime
   declare -A _profile_times=()
 fi
@@ -33,25 +33,24 @@ fi
 # that logic.  I've now switched to `arch`, which is even faster at ~0.6ms.
 function setup_brew_env() {
   ARCH=$(/usr/bin/arch)
-  if [[ "${ARCH}" == "arm64" ]]
-  then
+  if [[ ${ARCH} == "arm64" ]]; then
     # On ARM macOS, default script installs to /opt/homebrew
-    export HOMEBREW_PREFIX="/opt/homebrew";
-    export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-    export HOMEBREW_REPOSITORY="/opt/homebrew";
-    fpath[1,0]="/opt/homebrew/share/zsh/site-functions";
-    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
-    [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
-    export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+    export HOMEBREW_PREFIX="/opt/homebrew"
+    export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+    export HOMEBREW_REPOSITORY="/opt/homebrew"
+    fpath[1,0]="/opt/homebrew/share/zsh/site-functions"
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}"
+    [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}"
+    export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
   else
     # On Intel macOS, default script installs to /usr/local
-    export HOMEBREW_PREFIX="/usr/local";
-    export HOMEBREW_CELLAR="/usr/local/Cellar";
-    export HOMEBREW_REPOSITORY="/usr/local/Homebrew";
-    fpath[1,0]="/usr/local/share/zsh/site-functions";
-    export PATH="/usr/local/bin:/usr/local/sbin${PATH+:$PATH}";
-    [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
-    export INFOPATH="/usr/local/share/info:${INFOPATH:-}";
+    export HOMEBREW_PREFIX="/usr/local"
+    export HOMEBREW_CELLAR="/usr/local/Cellar"
+    export HOMEBREW_REPOSITORY="/usr/local/Homebrew"
+    fpath[1,0]="/usr/local/share/zsh/site-functions"
+    export PATH="/usr/local/bin:/usr/local/sbin${PATH+:$PATH}"
+    [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}"
+    export INFOPATH="/usr/local/share/info:${INFOPATH:-}"
   fi
 }
 
@@ -81,7 +80,7 @@ function setup_zsh_plugins() {
     "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
   )
   for src in "${zsh_plugin_src[@]}"; do
-    if [[ -f "$src" ]]; then
+    if [[ -f $src ]]; then
       source "$src"
     fi
   done
@@ -180,7 +179,7 @@ function setup_prompt() {
     echo "[warning] oh-my-posh not found, using default prompt"
     return
   fi
-  if [[ ! -f "$OMP_CONFIG" ]]; then
+  if [[ ! -f $OMP_CONFIG ]]; then
     echo "[warning] oh-my-posh config not found at $OMP_CONFIG"
     return
   fi
@@ -200,11 +199,11 @@ local -a setup_fns=(
 )
 
 for fn in "${setup_fns[@]}"; do
-  if [[ "$ZSHRC_PROFILE" = true ]]; then
+  if [[ $ZSHRC_PROFILE == true ]]; then
     local _t0=$EPOCHREALTIME
     $fn
     local _t1=$EPOCHREALTIME
-    _profile_times[$fn]=$(( ($_t1 - $_t0) * 1000 ))
+    _profile_times[$fn]=$(((_t1 - _t0) * 1000))
   else
     $fn
   fi
@@ -213,7 +212,7 @@ done
 #############################################################################
 # PROFILING OUTPUT
 #############################################################################
-if [[ "$ZSHRC_PROFILE" = true ]]; then
+if [[ $ZSHRC_PROFILE == true ]]; then
   printf "\n\033[1m%-25s %8s\033[0m\n" "section" "time"
   printf "%-25s %8s\n" "-------------------------" "--------"
   for fn in "${setup_fns[@]}"; do
