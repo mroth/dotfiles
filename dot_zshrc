@@ -100,10 +100,6 @@ function setup_shell_env() {
   # alias brewsup='brew update && brew outdated'
   # alias brewup='brew upgrade && brew cleanup'
 
-  # Ruby: since you have to type it so much
-  # Deprecated: disabling for now since I don't work with Ruby on a daily basis.
-  # alias be='bundle exec'
-
   # darwin specific
   # add hidden airport CLI command
   # since I'm noncommital just alias instead of polluting $PATH or symlinking
@@ -140,9 +136,6 @@ function setup_shell_env() {
 
   # lolcommits related prefs
   export LOLCOMMITS_DELAY=1
-
-  # Bundler: add local repo binstubs to default path
-  export PATH=.bundle/binstubs:$PATH
 
   # Python, you make a big mess with your *.pyc bullshit.
   export PYTHONDONTWRITEBYTECODE=1
