@@ -1,6 +1,7 @@
 # dotfiles
 brew "chezmoi"
 brew "antigen"
+brew "oh-my-posh"
 
 # source code management
 brew "git"

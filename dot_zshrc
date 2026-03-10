@@ -31,13 +31,6 @@ function profile_stop () {
 
 profile_start ".zshrc"
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 #############################################################################
 # HOMEBREW PREFIX
 #############################################################################
@@ -120,7 +113,6 @@ if [ -s "$antigenSrc" ]; then
   # antigen bundle mroth/git-prompt-useremail # TODO: not integrated into my p10k config yet
 
   # antigen theme blinks
-  antigen theme romkatv/powerlevel10k
   antigen apply
 fi
 profile_stop "antigen"
@@ -221,9 +213,21 @@ fi
 
 profile_stop "scmpuff"
 
+
+#############################################################################
+# PROMPT SETUP (currently managed via oh-my-posh)
+#############################################################################
 profile_start "prompt"
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+OMP_CONFIG="$HOME/.config/oh-my-posh/config.toml"
+if hash oh-my-posh 2>/dev/null; then
+  if [[ -f "$OMP_CONFIG" ]]; then
+    eval "$(oh-my-posh init zsh --config "$OMP_CONFIG")"
+  else
+    echo "[warning] oh-my-posh config not found at $OMP_CONFIG"
+  fi
+else
+  echo "[warning] oh-my-posh not found, using default prompt"
+fi
 profile_stop "prompt"
 
 profile_stop ".zshrc"

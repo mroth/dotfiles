@@ -1,0 +1,80 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+version = 4
+
+[[blocks]]
+  type = "prompt"
+  alignment = "left"
+  newline = true
+
+  [[blocks.segments]]
+    type = "path"
+    style = "plain"
+    foreground = "blue"
+    template = "{{ .Path }}"
+    [blocks.segments.properties]
+      style = "full"
+
+  [[blocks.segments]]
+    type = "jujutsu"
+    style = "plain"
+    foreground = "green"
+    foreground_templates = [
+      "{{ if .Working.Changed }}yellow{{ end }}",
+    ]
+    template = " \uf1fa{{ .ChangeID }}{{ if .ClosestBookmarks }} {{ .ClosestBookmarks }}{{ end }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}"
+    [blocks.segments.properties]
+      fetch_status = true
+
+  [[blocks.segments]]
+    type = "git"
+    style = "plain"
+    foreground = "green"
+    foreground_templates = [
+      "{{ if gt .Ahead 0 }}cyan{{ end }}",
+      "{{ if gt .Behind 0 }}cyan{{ end }}",
+      "{{ if .Working.Changed }}yellow{{ end }}",
+      "{{ if .Staging.Changed }}yellow{{ end }}",
+    ]
+    template = " {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and .Working.Changed .Staging.Changed }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \u2691{{ .StashCount }}{{ end }}"
+    [blocks.segments.properties]
+      fetch_status = true
+      fetch_stash_count = true
+      disable_with_jj = true
+
+[[blocks]]
+  type = "prompt"
+  alignment = "right"
+
+  [[blocks.segments]]
+    type = "status"
+    style = "plain"
+    foreground = "red"
+    template = "✘ {{ .Code }}"
+    [blocks.segments.properties]
+      always_enabled = false
+
+  [[blocks.segments]]
+    type = "executiontime"
+    style = "plain"
+    foreground = "yellow"
+    template = " {{ .FormattedMs }}"
+    [blocks.segments.properties]
+      threshold = 2000
+
+[[blocks]]
+  type = "prompt"
+  alignment = "left"
+  newline = true
+
+  [[blocks.segments]]
+    type = "text"
+    style = "plain"
+    foreground_templates = [
+      "{{ if gt .Code 0 }}red{{ end }}",
+    ]
+    foreground = "magenta"
+    template = "❯ "
+
+[transient_prompt]
+  foreground = "magenta"
+  template = "❯ "
