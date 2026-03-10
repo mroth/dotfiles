@@ -55,20 +55,14 @@ function setup_brew_env() {
 }
 
 #############################################################################
-# HOMEBREW COMPLETIONS
+# ZSH COMPLETIONS
 #############################################################################
 #
-# This must occur prior to compinit being invoked, which OMZ does automatically
+# Must run after setup_brew_env, which adds homebrew's site-functions to fpath.
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-#
-# Originally `FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH`,
-# but brew prefix path hardcoded to avoid extra shellcall invocation (saves 20+ms!)
 function setup_completions() {
-  if type brew &>/dev/null; then
-    FPATH=${HOMEBREW_PREFIX}/share/zsh/site-functions:$FPATH
-    autoload -Uz compinit
-    compinit
-  fi
+  autoload -Uz compinit
+  compinit
 }
 
 #############################################################################
