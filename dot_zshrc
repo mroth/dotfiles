@@ -87,35 +87,19 @@ fi
 profile_stop "brew-comp"
 
 #############################################################################
-# ANTIGEN ZSH PLUGIN MANAGER
+# ZSH PLUGINS (installed via homebrew)
 #############################################################################
-# Note to self: Pretty much everything here is in homebrew now, so I could
-# get rid of antigen and use the brew versions instead of desired to not
-# have antigen.
-profile_start "antigen"
-antigenSrc="${HOMEBREW_PREFIX}/share/antigen/antigen.zsh"
-if [ -s "$antigenSrc" ]; then
-  source $antigenSrc
-
-  # OMZ plugins
-  # antigen use oh-my-zsh
-  # antigen bundle docker
-  # antigen bundle docker-compose
-  # antigen bundle golang
-  # antigen bundle macos
-
-  # other plugins
-  antigen bundle zdharma-continuum/fast-syntax-highlighting
-  antigen bundle zsh-users/zsh-autosuggestions
-
-  # my awesomely neato personal plugins
-  # antigen bundle mroth/evalcache
-  # antigen bundle mroth/git-prompt-useremail # TODO: not integrated into my p10k config yet
-
-  # antigen theme blinks
-  antigen apply
-fi
-profile_stop "antigen"
+profile_start "zsh-plugins"
+zsh_plugin_src=(
+  "${HOMEBREW_PREFIX}/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+  "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+)
+for src in "${zsh_plugin_src[@]}"; do
+  if [[ -f "$src" ]]; then
+    source "$src"
+  fi
+done
+profile_stop "zsh-plugins"
 
 #############################################################################
 # gcloud completions

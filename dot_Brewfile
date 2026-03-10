@@ -1,7 +1,8 @@
 # dotfiles
 brew "chezmoi"
-brew "antigen"
 brew "oh-my-posh"
+brew "zsh-autosuggestions"
+brew "zsh-fast-syntax-highlighting"
 
 # source code management
 brew "git"
