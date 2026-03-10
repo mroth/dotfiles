@@ -69,6 +69,9 @@ function setup_completions() {
 # ZSH PLUGINS (installed via homebrew)
 #############################################################################
 function setup_zsh_plugins() {
+  # set autosuggestions to only use completion strategy, not history
+  export ZSH_AUTOSUGGEST_STRATEGY=(completion)
+
   local zsh_plugin_src=(
     "${HOMEBREW_PREFIX}/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
     "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -125,10 +128,6 @@ function setup_shell_env() {
   export GIT_EDITOR='vim'
   export HOMEBREW_EDITOR='vim'
   export CLICOLOR=1
-
-  # ZSH plugin configuration
-  # set autosuggestions to only use completion strategy, not history
-  export ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
   # set default GOPATH, add `go install` bin directory to default path (but make
   # it last so /usr/local et al take precedence), and set a convenience env var
