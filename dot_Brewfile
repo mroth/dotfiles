@@ -72,10 +72,6 @@ cask "discord"
 cask "zoom"
 cask "soulver"
 
-# casks: password management
-cask "1password"    # needs post-install login
-cask "authy"        # needs post-install login
-
 # casks: development
 cask "visual-studio-code"
 cask "zed"
@@ -90,7 +86,6 @@ cask "licecap"
 
 # casks: entertainment
 cask "spotify"
-# cask "sonos" #not yet Apple Silicon native grr
 cask "transmission"
 cask "vlc"
 cask "iina"
