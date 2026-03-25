@@ -1,7 +1,7 @@
 {
   "file_types": {
-    "Git Config": ["dot_gitconfig"],
-    "Git Ignore": ["dot_gitignore"],
+    "Git Config": ["**/dot_config/git/config", "**/dot_config/git/include/*.gitconfig"],
+    "Git Ignore": ["**/dot_config/git/ignore"],
     "Shell Script": ["dot_zsh*", "dot_bash*"]
   }
 }

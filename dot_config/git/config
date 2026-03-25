@@ -19,7 +19,6 @@
 # 	allowedSignersFile = ~/.config/git/allowed_signers
 
 [core]
-	excludesfile = ~/.gitignore
 	quotepath = false
 
 [init]
@@ -37,7 +36,7 @@
 
 # TODO: default for homebrew managed git on macOS is osxkeychain, investigate
 # if this is safe to remove to make this file more portable (e.g. what
-# happens on macOS if brew git is not used?) 
+# happens on macOS if brew git is not used?)
 [credential]
 	helper = osxkeychain
 
@@ -81,7 +80,7 @@
 # could also use "hasconfig:remote.*.url" vs directory path based.
 
 [includeIf "gitdir:~/src/protocol/"]
-	path = ~/src/protocol/.gitconfig.inc
+	path = ~/.config/git/include/protocol.gitconfig
 
 [includeIf "gitdir:~/src/dojo/"]
-    path = ~/src/dojo/.gitconfig.inc
+    path = ~/.config/git/include/dojo.gitconfig

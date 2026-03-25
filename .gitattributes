@@ -1,2 +1,4 @@
 dot_Brewfile linguist-language=Ruby
-dot_gitconfig linguist-language=Git-Config
+dot_config/git/config linguist-language=Git-Config
+dot_config/git/ignore linguist-language=Git-Ignore
+dot_config/git/include/*.gitconfig linguist-language=Git-Config
