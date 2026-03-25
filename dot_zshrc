@@ -173,6 +173,20 @@ function setup_prompt() {
 }
 
 #############################################################################
+# SSH KEYCHAIN
+#############################################################################
+
+# On macOS, load SSH keys from the Apple keychain for use in the terminal.
+# To add new keys, use `ssh-add --apple-use-keychain ~/.ssh/id_ed25519`.
+function setup_ssh_keychain() {
+  if [[ $OSTYPE == "darwin"* ]]; then
+    if ! ssh-add -l >/dev/null 2>&1; then
+      ssh-add --apple-load-keychain -q
+    fi
+  fi
+}
+
+#############################################################################
 # RUN SETUP
 #############################################################################
 local -a setup_fns=(
@@ -182,6 +196,7 @@ local -a setup_fns=(
   setup_shell_env
   setup_scmpuff
   setup_prompt
+  setup_ssh_keychain
 )
 
 for fn in "${setup_fns[@]}"; do

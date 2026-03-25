@@ -9,6 +9,15 @@
 [gpg]
 	format = ssh
 
+# automatically sign all commits
+[commit]
+	gpgsign = true
+
+# Enable *local* SSH signature verification
+# TODO: Need to automate populating the allowed_signers file.
+# [gpg "ssh"]
+# 	allowedSignersFile = ~/.config/git/allowed_signers
+
 [core]
 	excludesfile = ~/.gitignore
 

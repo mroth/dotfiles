@@ -1,0 +1,7 @@
+IgnoreUnknown UseKeychain
+
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+  VisualHostKey yes
