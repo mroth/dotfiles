@@ -20,36 +20,29 @@
 
 [core]
 	excludesfile = ~/.gitignore
+	quotepath = false
 
 [init]
 	defaultBranch = main
-
-[color]
-	ui = true
-
-[diff]
-	tool = opendiff
-
-[merge]
-	tool = opendiff
 
 [rebase]
 	autosquash = true
 	autostash = true
 
 [push]
-	default = simple
 	autoSetupRemote = true
 
 [pull]
 	ff = only
 
-[core]
-	quotepath = false
-
+# TODO: default for homebrew managed git on macOS is osxkeychain, investigate
+# if this is safe to remove to make this file more portable (e.g. what
+# happens on macOS if brew git is not used?) 
 [credential]
 	helper = osxkeychain
 
+# Used for Google project authentication (e.g. go.googlesource.com and Gerrit)
+# TODO: investigate migration to git config --local.
 [http]
     cookiefile = ~/.gitcookies
 
@@ -58,20 +51,7 @@
 	smash = rebase --autosquash --committer-date-is-author-date
 	log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	dshow = -c diff.external=difft show --ext-diff
-    ddiff = -c diff.external=difft diff
-
-# GitHub for Mac insists on adding these whenever it launches, so let's check it
-# in a way that we at least knows where it comes from.
-[filter "hawser"]
-	clean = git hawser clean %f
-	smudge = git hawser smudge %f
-	required = true
-
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    difft = -c diff.external=difft diff
 
 # git-sigil settings
 # wip: https://github.com/mroth/git-sigil
@@ -98,6 +78,7 @@
 
 # include org specific directives based on location.
 # https://git-scm.com/docs/git-config#_conditional_includes
+# could also use "hasconfig:remote.*.url" vs directory path based.
 
 [includeIf "gitdir:~/src/protocol/"]
 	path = ~/src/protocol/.gitconfig.inc
