@@ -58,7 +58,6 @@ brew "dust" # better du
 brew "curl"
 brew "nmap"
 brew "wget"
-brew "speedtest-cli"
 brew "yt-dlp"
 
 # security: encryption and passwords
@@ -75,8 +74,7 @@ cask "soulver"
 # casks: development
 cask "visual-studio-code"
 cask "zed"
-cask "docker"       # needs post-install login
-cask "github"       # needs post-install login
+cask "docker-desktop"
 cask "gitup-app"
 
 # casks: media encoding
