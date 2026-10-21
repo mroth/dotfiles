@@ -95,11 +95,6 @@ function setup_shell_env() {
   # my code todos
   alias td='rg TODO'
 
-  # for obsessive version checking
-  # Deprecated: trying to disable for a bit to see if I can retrain my muscle memory.
-  # alias brewsup='brew update && brew outdated'
-  # alias brewup='brew upgrade && brew cleanup'
-
   # darwin specific
   # add hidden `airport` CLI command
   # Deprecated: removed by Apple in macOS 14.4, use `wdutil` instead now.
