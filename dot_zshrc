@@ -19,6 +19,13 @@ if [[ $ZSHRC_PROFILE == true ]]; then
 fi
 
 #############################################################################
+# PATH DEDUPLICATION
+#############################################################################
+# Keep path/fpath entries unique, so nested shells don't accumulate duplicates.
+# PATH needs it as well as path, since PATH gets assigned as a string below.
+typeset -U PATH path fpath
+
+#############################################################################
 # HOMEBREW PREFIX
 #############################################################################
 #
