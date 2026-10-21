@@ -103,7 +103,7 @@ function setup_shell_env() {
   alias tailscale="/Applications/Tailscale.app/Contents/MacOS/tailscale"
 
   # shorthand when starting a new go personal project
-  alias gmi='go mod init github.com/${USER}/$(basename `pwd`)'
+  alias gmi='go mod init github.com/${USER}/${PWD:t}'
 
   # handy for go fuzzing on efficiency cores only
   # Deprecated: prefer github.com/mroth/go-bgtest instead.
