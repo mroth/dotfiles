@@ -220,3 +220,11 @@ if [[ $ZSHRC_PROFILE == true ]]; then
     printf "%-25s %7.1fms\n" "$fn" "$_profile_times[$fn]"
   done
 fi
+
+#############################################################################
+# SAFETY CHECK
+#############################################################################
+# Return at expected time, as a safeguard against rogue commands simply
+# appending configurations to the end of zshrc. Modifications not added to
+# dotfile control should be detected via `chezmoi verify ~/.zshrc`.
+return 0
