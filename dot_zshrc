@@ -101,9 +101,8 @@ function setup_shell_env() {
   # alias brewup='brew upgrade && brew cleanup'
 
   # darwin specific
-  # add hidden airport CLI command
-  # since I'm noncommital just alias instead of polluting $PATH or symlinking
-  alias airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
+  # add hidden `airport` CLI command
+  # Deprecated: removed by Apple in macOS 14.4, use `wdutil` instead now.
 
   # same but for tailscale binary cli access
   alias tailscale="/Applications/Tailscale.app/Contents/MacOS/tailscale"
