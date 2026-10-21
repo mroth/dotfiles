@@ -202,7 +202,7 @@ for fn in "${setup_fns[@]}"; do
 done
 
 #############################################################################
-# PROFILING OUTPUT
+# SETUP PROFILING
 #############################################################################
 if [[ $ZSHRC_PROFILE == true ]]; then
   printf "\n\033[1m%-25s %8s\033[0m\n" "section" "time"
@@ -211,6 +211,13 @@ if [[ $ZSHRC_PROFILE == true ]]; then
     printf "%-25s %7.1fms\n" "$fn" "$_profile_times[$fn]"
   done
 fi
+
+#############################################################################
+# SETUP CLEANUP
+#############################################################################
+# setup functions are only needed at startup, so don't leave them lying around
+unfunction "${setup_fns[@]}"
+unset fn setup_fns
 
 #############################################################################
 # SAFETY CHECK
