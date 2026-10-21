@@ -126,7 +126,7 @@ function setup_shell_env() {
   export PATH=$PATH:$GOPATH/bin
 
   # and now rust wants to have its own path as well (kinda, way less annoying tho)
-  export PATH="$HOME/.cargo/bin:$PATH"
+  export PATH=$PATH:$HOME/.cargo/bin
 
   # Python, you make a big mess with your *.pyc bullshit.
   export PYTHONDONTWRITEBYTECODE=1
