@@ -70,7 +70,7 @@ function setup_completions() {
 #############################################################################
 function setup_zsh_plugins() {
   # set autosuggestions to only use completion strategy, not history
-  export ZSH_AUTOSUGGEST_STRATEGY=(completion)
+  ZSH_AUTOSUGGEST_STRATEGY=(completion)
 
   local zsh_plugin_src=(
     "${HOMEBREW_PREFIX}/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
